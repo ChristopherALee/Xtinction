@@ -1,7 +1,12 @@
-let playerX = (800 / 2) - 25;
-let playerY = 800 - 75;
-let playerW = 50;
-let playerH = 50;
+let canvas;
+let ctx;
+let width = 1200;
+let height = 700;
+
+let playerX = (width / 2) - 25;
+let playerY = height / 2;
+let playerW = 85;
+let playerH = 85;
 
 let playerMoveUp = false;
 let playerMoveDown = false;
@@ -42,7 +47,13 @@ function keyUp(e) {
   }
 }
 
+function clearCanvas() {
+  ctx.clearRect(0, 0, width, height);
+}
+
 function drawPlayer() {
+  const player = document.getElementById('player');
+
   if (playerMoveUp) {
     playerY -= 10;
   } else if (playerMoveDown) {
@@ -56,14 +67,30 @@ function drawPlayer() {
   }
 
   if (playerX <= 0) { playerX = 0; }
-  if ((playerX + playerW) >= 800) { playerX = 800 - playerW; }
+  if ((playerX + playerW) >= width) { playerX = width - playerW; }
+  if ((playerY + playerH) >= height) { playerY = height - playerH; }
   if (playerY <= 0) { playerY = 0; }
-  if ((playerY + playerH) >= 800) { playerY = 800 - playerH; }
 
-  ctx.fillStyle = 'white';
-  ctx.fillRect(playerX, playerY, playerW, playerH);
+  // ctx.fillStyle = 'white';
+  // ctx.fillRect(playerX, playerY, playerW, playerH);
+  ctx.drawImage(player,
+    10, 1000,
+    45, 45,
+    playerX, playerY,
+    playerW, playerH);
 }
 
-module.exports = drawPlayer;
-module.exports = keyDown;
-module.exports = keyUp;
+function init() {
+  canvas = document.getElementById('canvas');
+  ctx = canvas.getContext('2d');
+  setInterval(gameLoop, 25);
+  document.addEventListener('keydown', keyDown, false);
+  document.addEventListener('keyup', keyUp, false);
+}
+
+function gameLoop() {
+  clearCanvas();
+  drawPlayer();
+}
+
+window.onload = init();

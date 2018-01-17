@@ -1,4 +1,4 @@
-import Sprite from './sprite.js';
+const Sprite = require('./sprite.js');
 
 let requestAnimFrame = (function(){
     return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
@@ -27,7 +27,7 @@ function init() {
 // Game state
 let player = {
     pos: [0, 0],
-    sprite: new Sprite('https://www.spriters-resource.com/resources/sheets/11/11226.gif', [0, 1000], [55, 45], 16, [0, 1])
+    sprite: new Sprite('https://www.spriters-resource.com/resources/sheets/11/11226.gif', [0, 1000], [45, 45], 16, [0, 1])
 };
 
 let bullets = [];
