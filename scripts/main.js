@@ -1,12 +1,12 @@
 let canvas;
 let ctx;
-let width = 800;
-let height = 800;
+let width = 1200;
+let height = 700;
 
 let playerX = (width / 2) - 25;
 let playerY = height / 2;
-let playerW = 50;
-let playerH = 50;
+let playerW = 85;
+let playerH = 85;
 
 let playerMoveUp = false;
 let playerMoveDown = false;
@@ -52,6 +52,8 @@ function clearCanvas() {
 }
 
 function drawPlayer() {
+  const player = document.getElementById('player');
+
   if (playerMoveUp) {
     playerY -= 10;
   } else if (playerMoveDown) {
@@ -69,8 +71,9 @@ function drawPlayer() {
   if ((playerY + playerH) >= height) { playerY = height - playerH; }
   if (playerY <= 0) { playerY = 0; }
 
-  ctx.fillStyle = 'white';
-  ctx.fillRect(playerX, playerY, playerW, playerH);
+  // ctx.fillStyle = 'white';
+  // ctx.fillRect(playerX, playerY, playerW, playerH);
+  ctx.drawImage(player, 10, 1000, 45, 45, playerX, playerY, playerW, playerH);
 }
 
 function init() {
