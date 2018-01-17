@@ -38,7 +38,10 @@ let gameTime = 0;
 let isGameOver;
 
 function update(dt) {
+  gameTime += dt;
 
+  handleInput(dt);
+  updateEntities(dt);
 }
 
 function render() {
