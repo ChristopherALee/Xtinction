@@ -4,7 +4,7 @@ let width = 800;
 let height = 800;
 
 let playerX = (width / 2) - 25;
-let playerY = height - 75;
+let playerY = height / 2;
 let playerW = 50;
 let playerH = 50;
 
@@ -66,8 +66,8 @@ function drawPlayer() {
 
   if (playerX <= 0) { playerX = 0; }
   if ((playerX + playerW) >= width) { playerX = width - playerW; }
-  if (playerY <= 0) { playerY = 0; }
   if ((playerY + playerH) >= height) { playerY = height - playerH; }
+  if (playerY <= 0) { playerY = 0; }
 
   ctx.fillStyle = 'white';
   ctx.fillRect(playerX, playerY, playerW, playerH);
