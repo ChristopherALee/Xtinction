@@ -152,7 +152,8 @@ let previousShot = Date.now();
 
 let enemies = [
   Monsters.cerberus,
-  Monsters.dragonTurtle
+  Monsters.dragonTurtle,
+  Monsters.balrog
 ];
 let explosions = [];
 
@@ -189,7 +190,6 @@ function updateAll(timeDifferential) {
     currentLeftBullet.pos[0] -= currentLeftBullet.speed * timeDifferential;
   }
 
-  Monsters.cerberus.sprite.updateAnimation(timeDifferential);
   enemies.forEach( (monster) => { monster.sprite.updateAnimation(timeDifferential); } )
 }
 

@@ -25,3 +25,16 @@ export const dragonTurtle = {
     [0, 1, 2, 3, 4, 5]),
   speed: 100
 };
+
+export const balrog = {
+  pos: [700, 300],
+  sprite: new Sprite(
+    'https://i.imgur.com/WvHlsqj.png',
+    [20, 240],
+    [178, 178],
+    [0, 0],
+    [170, 170],
+    5,
+    [0, 1, 2, 3]
+  )
+};
