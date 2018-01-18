@@ -1,8 +1,9 @@
 class Sprite {
-  constructor(url, pos, size, canvasSize, speed, frames) {
+  constructor(url, srcPos, srcSize, canvasPos, canvasSize, speed, frames) {
     this.url = url;
-    this.pos = pos;
-    this.size = size;
+    this.srcPos = srcPos;
+    this.srcSize = srcSize;
+    this.canvasPos = canvasPos;
     this.canvasSize = canvasSize;
     this.speed = typeof speed === 'number' ? speed : 0;
     this.frames = frames;
@@ -24,18 +25,18 @@ class Sprite {
       frame = 0;
     }
 
-    let x = this.pos[0];
-    let y = this.pos[1];
+    let x = this.srcPos[0];
+    let y = this.srcPos[1];
 
-    x += frame * this.size[0];
+    x += frame * this.srcSize[0];
 
-    let newImage = new Image(this.size[0], this.size[1]);
+    let newImage = new Image(this.srcSize[0], this.srcSize[1]);
     newImage.src = this.url;
 
     ctx.drawImage(newImage,
                   x, y,
-                  this.size[0], this.size[1],
-                  0, 0,
+                  this.srcSize[0], this.srcSize[1],
+                  this.canvasPos[0], this.canvasPos[1],
                   this.canvasSize[0], this.canvasSize[1]);
   }
 }

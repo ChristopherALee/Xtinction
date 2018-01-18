@@ -6,6 +6,7 @@ let player = {
       'https://i.imgur.com/6n1qcVc.png',
       [125, 874],
       [100, 100],
+      [0, 0],
       [100, 100],
       5,
       [0]),
