@@ -151,7 +151,8 @@ let leftBullets = [];
 let previousShot = Date.now();
 
 let enemies = [
-  Monsters.cerberus
+  Monsters.cerberus,
+  Monsters.dragonTurtle
 ];
 let explosions = [];
 
@@ -189,6 +190,7 @@ function updateAll(timeDifferential) {
   }
 
   Monsters.cerberus.sprite.updateAnimation(timeDifferential);
+  enemies.forEach( (monster) => { monster.sprite.updateAnimation(timeDifferential); } )
 }
 
 function render() {
@@ -213,8 +215,8 @@ function isCollision(
     return (
       pos1X < pos2X + size2X - 50 &&
       pos1X + size1X > pos2X &&
-      pos1Y < pos2Y + size2Y - 100 &&
-      size1X + pos1Y + 25 > pos2Y
+      pos1Y < pos2Y + size2Y - 70 &&
+      size1X + pos1Y > pos2Y
     );
 }
 
