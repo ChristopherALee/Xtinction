@@ -9,12 +9,8 @@ class Sprite {
     this.frameIdx = 0;
   }
 
-  update(timeDifferential) {
+  updateAnimation(timeDifferential) {
     this.frameIdx += this.speed * timeDifferential;
-  }
-
-  updatePos(timeDifferential) {
-    this.pos[0] += this.speed * timeDifferential;
   }
 
   render(ctx) {

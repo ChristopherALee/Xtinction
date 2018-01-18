@@ -9,7 +9,8 @@ let player = {
       [100, 100],
       5,
       [0]),
-    speed: 388
+    speed: 388,
+    direction: 'RIGHT'
 };
 
 export default player;
