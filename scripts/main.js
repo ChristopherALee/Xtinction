@@ -71,14 +71,14 @@ function init() {
 let canvas = document.getElementById('canvas');
 let ctx = canvas.getContext('2d');
 let player = {
-    pos: [0, 250],
+    pos: [250, 350],
     sprite: new Sprite(
-      'https://www.spriters-resource.com/resources/sheets/11/11226.gif',
-      [0, 1000],
-      [49.7, 45],
-      [75, 75],
+      'https://i.imgur.com/6n1qcVc.png',
+      [0, 30],
+      [70, 70],
+      [100, 100],
       5,
-      [0, 2]),
+      [0]),
     speed: 388
 };
 let cerberus = {
@@ -131,14 +131,28 @@ function handleInput(timeDifferential) {
   }
 
   if (window.input.pressed('LEFT')) {
+    player.sprite = new Sprite(
+      'https://i.imgur.com/T9EWHuO.png',
+      [725, 30],
+      [70, 70],
+      [100, 100],
+      5,
+      [0]);
     player.pos[0] -= player.speed * timeDifferential;
   }
 
   if (window.input.pressed('RIGHT')) {
+    player.sprite = new Sprite(
+      'https://i.imgur.com/6n1qcVc.png',
+      [0, 30],
+      [70, 70],
+      [100, 100],
+      5,
+      [0]);
     player.pos[0] += player.speed * timeDifferential;
   }
 
-  if(player.pos[0] < 0) {
+  if (player.pos[0] < 0) {
      player.pos[0] = 0;
    }
    else if (player.pos[0] >= canvas.width - player.sprite.size[0] - 30) {
