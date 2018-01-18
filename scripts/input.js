@@ -10,19 +10,19 @@
     switch (keyCode) {
       case 87:
       key = 'UP';
-      this.pressedKeys[key] = status;
+      pressedKeys[key] = status;
       break;
       case 83:
       key = 'DOWN';
-      this.pressedKeys[key] = status;
+      pressedKeys[key] = status;
       break;
       case 65:
       key = 'LEFT';
-      this.pressedKeys[key] = status;
+      pressedKeys[key] = status;
       break;
       case 68:
       key = 'RIGHT';
-      this.pressedKeys[key] = status;
+      pressedKeys[key] = status;
       break;
     }
   }
@@ -35,4 +35,9 @@
     setKey(e, false);
   });
 
+  window.input ={
+    pressed: function(key) {
+      return pressedKeys[key];
+    }
+  };
 })();
