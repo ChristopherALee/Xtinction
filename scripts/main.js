@@ -89,11 +89,12 @@ function handleInput(timeDifferential) {
     player.pos[0] += player.speed * timeDifferential;
   }
 
-  if (window.input.pressed('SHOOT')) {
+  if (window.input.pressed('SHOOT') && ((Date.now() - previousShot) > 88)) {
     let x = player.pos[0] + (player.sprite.size[0] / 2 + 50);
     let y = player.pos[1] + (player.sprite.size[1] / 2 - 5);
 
     bullets.push(bullet(x,y));
+    previousShot = Date.now();
   }
 
   // handles player bounds
@@ -134,6 +135,8 @@ let canvas = document.getElementById('canvas');
 let ctx = canvas.getContext('2d');
 
 let bullets = [];
+let previousShot = Date.now();
+
 let enemies = [];
 let explosions = [];
 
