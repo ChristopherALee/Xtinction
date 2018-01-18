@@ -17,21 +17,25 @@ let requestAnimFrame = (function(){
 
     switch (keyCode) {
       case 87:
-      key = 'UP';
-      activeKeys[key] = status;
-      break;
+        key = 'UP';
+        activeKeys[key] = status;
+        break;
       case 83:
-      key = 'DOWN';
-      activeKeys[key] = status;
-      break;
+        key = 'DOWN';
+        activeKeys[key] = status;
+        break;
       case 65:
-      key = 'LEFT';
-      activeKeys[key] = status;
-      break;
+        key = 'LEFT';
+        activeKeys[key] = status;
+        break;
       case 68:
-      key = 'RIGHT';
-      activeKeys[key] = status;
-      break;
+        key = 'RIGHT';
+        activeKeys[key] = status;
+        break;
+      case 75:
+        key = 'SHOOT';
+        activeKeys[key] = status;
+        break;
     }
   }
 
@@ -43,12 +47,70 @@ let requestAnimFrame = (function(){
     setKey(e, false);
   });
 
-  window.input ={
-    pressed: function(key) {
+  window.input = {
+    pressed: (key) => {
       return activeKeys[key];
     }
   };
 })();
+
+function handleInput(timeDifferential) {
+  if (window.input.pressed('DOWN')) {
+    player.pos[1] += player.speed * timeDifferential;
+  }
+
+  if (window.input.pressed('UP')) {
+    player.pos[1] -= player.speed * timeDifferential;
+  }
+
+  if (window.input.pressed('LEFT')) {
+    player.sprite = new Sprite(
+      'https://i.imgur.com/T9EWHuO.png',
+      [570, 874],
+      [100, 100],
+      [100, 100],
+      5,
+      [0]);
+    player.pos[0] -= player.speed * timeDifferential;
+  }
+
+  if (window.input.pressed('RIGHT')) {
+    player.sprite = new Sprite(
+      'https://i.imgur.com/6n1qcVc.png',
+      [125, 874],
+      [100, 100],
+      [100, 100],
+      5,
+      [0]);
+    player.pos[0] += player.speed * timeDifferential;
+  }
+
+  if (window.input.pressed('SHOOT')) {
+    player.sprite = new Sprite(
+      'https://i.imgur.com/6n1qcVc.png',
+      [0, 800],
+      [90,90],
+      [100,100],
+      10,
+      [0,6]
+    );
+  }
+
+  // handles player bounds
+  if (player.pos[0] < 0) {
+     player.pos[0] = 0;
+   }
+   else if (player.pos[0] >= canvas.width - player.sprite.size[0] - 30) {
+     player.pos[0] = canvas.width - player.sprite.size[0] - 30;
+   }
+
+   if (player.pos[1] < 0) {
+     player.pos[1] = 0;
+   }
+   else if (player.pos[1] >= canvas.height - player.sprite.size[1] - 30) {
+     player.pos[1] = canvas.height - player.sprite.size[1] - 30;
+   }
+}
 
 let lastTime;
 function main() {
@@ -74,8 +136,8 @@ let player = {
     pos: [250, 350],
     sprite: new Sprite(
       'https://i.imgur.com/6n1qcVc.png',
-      [0, 30],
-      [70, 70],
+      [125, 874],
+      [100, 100],
       [100, 100],
       5,
       [0]),
@@ -119,52 +181,6 @@ function renderPlayer(object) {
   ctx.translate(object.pos[0], object.pos[1]);
   object.sprite.render(ctx);
   ctx.restore();
-}
-
-function handleInput(timeDifferential) {
-  if (window.input.pressed('DOWN')) {
-    player.pos[1] += player.speed * timeDifferential;
-  }
-
-  if (window.input.pressed('UP')) {
-    player.pos[1] -= player.speed * timeDifferential;
-  }
-
-  if (window.input.pressed('LEFT')) {
-    player.sprite = new Sprite(
-      'https://i.imgur.com/T9EWHuO.png',
-      [725, 30],
-      [70, 70],
-      [100, 100],
-      5,
-      [0]);
-    player.pos[0] -= player.speed * timeDifferential;
-  }
-
-  if (window.input.pressed('RIGHT')) {
-    player.sprite = new Sprite(
-      'https://i.imgur.com/6n1qcVc.png',
-      [0, 30],
-      [70, 70],
-      [100, 100],
-      5,
-      [0]);
-    player.pos[0] += player.speed * timeDifferential;
-  }
-
-  if (player.pos[0] < 0) {
-     player.pos[0] = 0;
-   }
-   else if (player.pos[0] >= canvas.width - player.sprite.size[0] - 30) {
-     player.pos[0] = canvas.width - player.sprite.size[0] - 30;
-   }
-
-   if (player.pos[1] < 0) {
-     player.pos[1] = 0;
-   }
-   else if (player.pos[1] >= canvas.height - player.sprite.size[1] - 30) {
-     player.pos[1] = canvas.height - player.sprite.size[1] - 30;
-   }
 }
 
 function updateAll(timeDifferential) {
