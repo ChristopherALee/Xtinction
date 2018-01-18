@@ -73,7 +73,7 @@ let ctx = canvas.getContext('2d');
 let player = {
     pos: [0, 250],
     sprite: new Sprite('https://www.spriters-resource.com/resources/sheets/11/11226.gif', [0, 1000], [49.7, 45], 5, [0, 2]),
-    speed: 200
+    speed: 388
 };
 
 let bullets = [];
@@ -106,21 +106,35 @@ function renderPlayer(object) {
 }
 
 function handleInput(dt) {
-  if(window.input.pressed('DOWN')) {
+  if (window.input.pressed('DOWN')) {
     player.pos[1] += player.speed * dt;
   }
 
-  if(window.input.pressed('UP')) {
-      player.pos[1] -= player.speed * dt;
+  if (window.input.pressed('UP')) {
+    player.pos[1] -= player.speed * dt;
   }
 
-  if(window.input.pressed('LEFT')) {
-      player.pos[0] -= player.speed * dt;
+  if (window.input.pressed('LEFT')) {
+    player.pos[0] -= player.speed * dt;
   }
 
-  if(window.input.pressed('RIGHT')) {
-      player.pos[0] += player.speed * dt;
+  if (window.input.pressed('RIGHT')) {
+    player.pos[0] += player.speed * dt;
   }
+
+  if(player.pos[0] < 0) {
+     player.pos[0] = 0;
+   }
+   else if (player.pos[0] >= canvas.width - player.sprite.size[0] - 30) {
+     player.pos[0] = canvas.width - player.sprite.size[0] - 30;
+   }
+
+   if (player.pos[1] < 0) {
+     player.pos[1] = 0;
+   }
+   else if (player.pos[1] >= canvas.height - player.sprite.size[1] - 30) {
+     player.pos[1] = canvas.height - player.sprite.size[1] - 30;
+   }
 }
 
 function updateEntities(dt) {

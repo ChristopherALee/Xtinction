@@ -10,6 +10,10 @@ class Sprite {
     this.index = 0;
   }
 
+  frames(num) {
+    this.frames = num;
+  }
+
   update(dt) {
     this.index += this.speed * dt;
   }
