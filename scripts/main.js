@@ -90,19 +90,10 @@ function handleInput(timeDifferential) {
   }
 
   if (window.input.pressed('SHOOT')) {
-    let x = player.pos[0] + (player.sprite.size[0] / 2);
-    let y = player.pos[1] + (player.sprite.size[1] / 2);
+    let x = player.pos[0] + (player.sprite.size[0] / 2 + 50);
+    let y = player.pos[1] + (player.sprite.size[1] / 2 - 5);
 
-    bullets.push({
-      bulletPos: [x, y],
-      sprite: new Sprite(
-        'https://i.imgur.com/6n1qcVc.png',
-        [500, 100],
-        [50, 50],
-        [50, 50],
-        0,
-        [0])
-    });
+    bullets.push(bullet(x,y));
   }
 
   // handles player bounds
@@ -160,6 +151,7 @@ function update(timeDifferential) {
 
 function render() {
   renderEntity(player);
+  bullets.forEach( (bullet) => renderEntity(bullet));
   renderEntity(Monsters.cerberus);
 }
 
@@ -172,6 +164,7 @@ function renderEntity(object) {
 
 function updateAll(timeDifferential) {
   player.sprite.update(timeDifferential);
+  bullets.forEach ( (bullet) => bullet.sprite.update(timeDifferential) );
   Monsters.cerberus.sprite.update(timeDifferential);
 }
 
