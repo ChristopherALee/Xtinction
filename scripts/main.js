@@ -166,7 +166,7 @@ function updateAll(timeDifferential) {
   player.sprite.update(timeDifferential);
 
   if (bullets.length >= 150) {
-    bullets.splice(50);
+    bullets = bullets.slice(75);
   }
   for (var i = 0; i < bullets.length; i++) {
     let currentBullet = bullets[i];
