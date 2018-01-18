@@ -111,7 +111,7 @@ function update(timeDifferential) {
 
 function render() {
   renderPlayer(player);
-  renderPlayer(grunt);
+  renderPlayer(cerberus);
 }
 
 function renderPlayer(object) {
@@ -155,7 +155,7 @@ function handleInput(timeDifferential) {
 
 function updateAll(timeDifferential) {
   player.sprite.update(timeDifferential);
-  grunt.sprite.update(timeDifferential);
+  cerberus.sprite.update(timeDifferential);
 }
 
 window.onload = init();
