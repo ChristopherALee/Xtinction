@@ -8,7 +8,7 @@ let requestAnimFrame = (function(){
 })();
 
 // player movement on key-press w/ event listeners
-(function() {
+const checkKeyPress = () => {
   let activeKeys = {};
 
   function setKey(e, status) {
@@ -52,7 +52,8 @@ let requestAnimFrame = (function(){
       return activeKeys[key];
     }
   };
-})();
+};
+checkKeyPress();
 
 function handleInput(timeDifferential) {
   if (window.input.pressed('DOWN')) {
@@ -86,29 +87,29 @@ function handleInput(timeDifferential) {
   }
 
   if (window.input.pressed('SHOOT')) {
-    player.sprite = new Sprite(
-      'https://i.imgur.com/6n1qcVc.png',
-      [0, 800],
-      [90,90],
-      [100,100],
-      10,
-      [0,6]
-    );
+    // player.sprite = new Sprite(
+    //   'https://i.imgur.com/6n1qcVc.png',
+    //   [0, 800],
+    //   [90,90],
+    //   [100,100],
+    //   10,
+    //   [0,6]
+    // );
   }
 
   // handles player bounds
   if (player.pos[0] < 0) {
      player.pos[0] = 0;
    }
-   else if (player.pos[0] >= canvas.width - player.sprite.size[0] - 30) {
-     player.pos[0] = canvas.width - player.sprite.size[0] - 30;
+   else if (player.pos[0] >= canvas.width - player.sprite.size[0] - 10) {
+     player.pos[0] = canvas.width - player.sprite.size[0] - 10;
    }
 
    if (player.pos[1] < 0) {
      player.pos[1] = 0;
    }
-   else if (player.pos[1] >= canvas.height - player.sprite.size[1] - 30) {
-     player.pos[1] = canvas.height - player.sprite.size[1] - 30;
+   else if (player.pos[1] >= canvas.height - player.sprite.size[1]) {
+     player.pos[1] = canvas.height - player.sprite.size[1];
    }
 }
 

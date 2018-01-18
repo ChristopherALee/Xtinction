@@ -7,7 +7,6 @@ class Sprite {
     this.speed = typeof speed === 'number' ? speed : 0;
     this.frames = frames;
     this.frameIdx = 0;
-    debugger
   }
 
   update(timeDifferential) {
