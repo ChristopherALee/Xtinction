@@ -1,4 +1,7 @@
 import Sprite from './sprite.js';
+import player from './player.js';
+import bullet from './bullet.js';
+import * as Monsters from './enemies.js';
 
 let requestAnimFrame = (function(){
     return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
@@ -87,14 +90,19 @@ function handleInput(timeDifferential) {
   }
 
   if (window.input.pressed('SHOOT')) {
-    // player.sprite = new Sprite(
-    //   'https://i.imgur.com/6n1qcVc.png',
-    //   [0, 800],
-    //   [90,90],
-    //   [100,100],
-    //   10,
-    //   [0,6]
-    // );
+    let x = player.pos[0] + (player.sprite.size[0] / 2);
+    let y = player.pos[1] + (player.sprite.size[1] / 2);
+
+    bullets.push({
+      bulletPos: [x, y],
+      sprite: new Sprite(
+        'https://i.imgur.com/6n1qcVc.png',
+        [500, 100],
+        [50, 50],
+        [50, 50],
+        0,
+        [0])
+    });
   }
 
   // handles player bounds
@@ -133,28 +141,6 @@ function init() {
 // Game state
 let canvas = document.getElementById('canvas');
 let ctx = canvas.getContext('2d');
-let player = {
-    pos: [250, 350],
-    sprite: new Sprite(
-      'https://i.imgur.com/6n1qcVc.png',
-      [125, 874],
-      [100, 100],
-      [100, 100],
-      5,
-      [0]),
-    speed: 388
-};
-let cerberus = {
-  pos: [700, 250],
-  sprite: new Sprite(
-    'http://www.feplanet.net/media/sprites/8/battle/sheets/enemy/monster_cerberus_claws.gif',
-    [5, 200],
-    [75, 60],
-    [200, 200],
-    3,
-    [0, 1]),
-  speed: 100
-};
 
 let bullets = [];
 let enemies = [];
@@ -173,11 +159,11 @@ function update(timeDifferential) {
 }
 
 function render() {
-  renderPlayer(player);
-  renderPlayer(cerberus);
+  renderEntity(player);
+  renderEntity(Monsters.cerberus);
 }
 
-function renderPlayer(object) {
+function renderEntity(object) {
   ctx.save();
   ctx.translate(object.pos[0], object.pos[1]);
   object.sprite.render(ctx);
@@ -186,7 +172,7 @@ function renderPlayer(object) {
 
 function updateAll(timeDifferential) {
   player.sprite.update(timeDifferential);
-  cerberus.sprite.update(timeDifferential);
+  Monsters.cerberus.sprite.update(timeDifferential);
 }
 
 window.onload = init();
