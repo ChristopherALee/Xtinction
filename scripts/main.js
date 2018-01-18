@@ -164,7 +164,16 @@ function renderEntity(object) {
 
 function updateAll(timeDifferential) {
   player.sprite.update(timeDifferential);
-  bullets.forEach ( (bullet) => bullet.sprite.update(timeDifferential) );
+
+  if (bullets.length >= 150) {
+    bullets.splice(50);
+  }
+  for (var i = 0; i < bullets.length; i++) {
+    let currentBullet = bullets[i];
+
+    currentBullet.pos[0] += currentBullet.speed * timeDifferential;
+  }
+
   Monsters.cerberus.sprite.update(timeDifferential);
 }
 

@@ -13,6 +13,10 @@ class Sprite {
     this.frameIdx += this.speed * timeDifferential;
   }
 
+  updatePos(timeDifferential) {
+    this.pos[0] += this.speed * timeDifferential;
+  }
+
   render(ctx) {
     let frame;
 
