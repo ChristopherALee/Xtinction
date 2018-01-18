@@ -7,8 +7,9 @@ let requestAnimFrame = (function(){
         };
 })();
 
+// player movement on key-press w/ event listeners
 (function() {
-  let pressedKeys = {};
+  let activeKeys = {};
 
   function setKey(e, status) {
     let keyCode = e.keyCode;
@@ -17,19 +18,19 @@ let requestAnimFrame = (function(){
     switch (keyCode) {
       case 87:
       key = 'UP';
-      pressedKeys[key] = status;
+      activeKeys[key] = status;
       break;
       case 83:
       key = 'DOWN';
-      pressedKeys[key] = status;
+      activeKeys[key] = status;
       break;
       case 65:
       key = 'LEFT';
-      pressedKeys[key] = status;
+      activeKeys[key] = status;
       break;
       case 68:
       key = 'RIGHT';
-      pressedKeys[key] = status;
+      activeKeys[key] = status;
       break;
     }
   }
@@ -44,7 +45,7 @@ let requestAnimFrame = (function(){
 
   window.input ={
     pressed: function(key) {
-      return pressedKeys[key];
+      return activeKeys[key];
     }
   };
 })();
@@ -52,9 +53,9 @@ let requestAnimFrame = (function(){
 let lastTime;
 function main() {
     let now = Date.now();
-    let dt = (now - lastTime) / 1000.0;
+    let timeDifferential = (now - lastTime) / 1000.0;
 
-    update(dt);
+    update(timeDifferential);
     render();
 
     lastTime = now;
@@ -75,6 +76,7 @@ let player = {
       'https://www.spriters-resource.com/resources/sheets/11/11226.gif',
       [0, 1000],
       [49.7, 45],
+      [75, 75],
       5,
       [0, 2]),
     speed: 388
@@ -83,10 +85,11 @@ let grunt = {
   pos: [700, 250],
   sprite: new Sprite(
     'http://www.feplanet.net/media/sprites/8/battle/sheets/enemy/monster_cerberus_claws.gif',
-    [0, 200],
-    [30, 30],
+    [5, 200],
+    [75, 60],
+    [200, 200],
     3,
-    [0,1,2,3,4,5]),
+    [0, 1]),
   speed: 100
 };
 
@@ -100,10 +103,10 @@ function clearCanvas() {
   ctx.clearRect(0, 0, 1200, 700);
 }
 
-function update(dt) {
+function update(timeDifferential) {
   clearCanvas();
-  handleInput(dt);
-  updateEntities(dt);
+  handleInput(timeDifferential);
+  updateAll(timeDifferential);
 }
 
 function render() {
@@ -118,21 +121,21 @@ function renderPlayer(object) {
   ctx.restore();
 }
 
-function handleInput(dt) {
+function handleInput(timeDifferential) {
   if (window.input.pressed('DOWN')) {
-    player.pos[1] += player.speed * dt;
+    player.pos[1] += player.speed * timeDifferential;
   }
 
   if (window.input.pressed('UP')) {
-    player.pos[1] -= player.speed * dt;
+    player.pos[1] -= player.speed * timeDifferential;
   }
 
   if (window.input.pressed('LEFT')) {
-    player.pos[0] -= player.speed * dt;
+    player.pos[0] -= player.speed * timeDifferential;
   }
 
   if (window.input.pressed('RIGHT')) {
-    player.pos[0] += player.speed * dt;
+    player.pos[0] += player.speed * timeDifferential;
   }
 
   if(player.pos[0] < 0) {
@@ -150,9 +153,9 @@ function handleInput(dt) {
    }
 }
 
-function updateEntities(dt) {
-  player.sprite.update(dt);
-  grunt.sprite.update(dt);
+function updateAll(timeDifferential) {
+  player.sprite.update(timeDifferential);
+  grunt.sprite.update(timeDifferential);
 }
 
 window.onload = init();

@@ -1,36 +1,26 @@
 class Sprite {
-  constructor(url, pos, size, speed, frames, dir, once) {
+  constructor(url, pos, size, canvasSize, speed, frames) {
     this.url = url;
     this.pos = pos;
     this.size = size;
+    this.canvasSize = canvasSize;
     this.speed = typeof speed === 'number' ? speed : 0;
     this.frames = frames;
-    this.dir = dir || 'horizontal';
-    this.once = once;
-    this.index = 0;
+    this.frameIdx = 0;
     debugger
   }
 
-  frames(num) {
-    this.frames = num;
-  }
-
-  update(dt) {
-    this.index += this.speed * dt;
+  update(timeDifferential) {
+    this.frameIdx += this.speed * timeDifferential;
   }
 
   render(ctx) {
     let frame;
 
     if (this.speed > 0) {
-      let max = this.frames.length;
-      let idx = Math.floor(this.index);
-      frame = this.frames[idx % max];
-
-      if (this.once && idx >= max) {
-        this.done = true;
-        return;
-      }
+      let allFrames = this.frames.length;
+      let idx = Math.floor(this.frameIdx);
+      frame = this.frames[idx % allFrames];
     } else {
       frame = 0;
     }
@@ -38,12 +28,7 @@ class Sprite {
     let x = this.pos[0];
     let y = this.pos[1];
 
-    if(this.dir === 'vertical') {
-        y += frame * this.size[1];
-    }
-    else {
-        x += frame * this.size[0];
-    }
+    x += frame * this.size[0];
 
     let newImage = new Image(this.size[0], this.size[1]);
     newImage.src = this.url;
@@ -52,7 +37,7 @@ class Sprite {
                   x, y,
                   this.size[0], this.size[1],
                   0, 0,
-                  75, 75);
+                  this.canvasSize[0], this.canvasSize[1]);
   }
 }
 
