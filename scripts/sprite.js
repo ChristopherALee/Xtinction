@@ -8,6 +8,7 @@ class Sprite {
     this.dir = dir || 'horizontal';
     this.once = once;
     this.index = 0;
+    debugger
   }
 
   frames(num) {

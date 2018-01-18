@@ -1,5 +1,4 @@
 import Sprite from './sprite.js';
-import input from './input.js';
 
 let requestAnimFrame = (function(){
     return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
@@ -72,15 +71,29 @@ let canvas = document.getElementById('canvas');
 let ctx = canvas.getContext('2d');
 let player = {
     pos: [0, 250],
-    sprite: new Sprite('https://www.spriters-resource.com/resources/sheets/11/11226.gif', [0, 1000], [49.7, 45], 5, [0, 2]),
+    sprite: new Sprite(
+      'https://www.spriters-resource.com/resources/sheets/11/11226.gif',
+      [0, 1000],
+      [49.7, 45],
+      5,
+      [0, 2]),
     speed: 388
+};
+let grunt = {
+  pos: [700, 250],
+  sprite: new Sprite(
+    'http://www.feplanet.net/media/sprites/8/battle/sheets/enemy/monster_cerberus_claws.gif',
+    [0, 200],
+    [30, 30],
+    3,
+    [0,1,2,3,4,5]),
+  speed: 100
 };
 
 let bullets = [];
 let enemies = [];
 let explosions = [];
 
-let gameTime = 0;
 let isGameOver;
 
 function clearCanvas() {
@@ -88,7 +101,6 @@ function clearCanvas() {
 }
 
 function update(dt) {
-  gameTime += dt;
   clearCanvas();
   handleInput(dt);
   updateEntities(dt);
@@ -96,6 +108,7 @@ function update(dt) {
 
 function render() {
   renderPlayer(player);
+  renderPlayer(grunt);
 }
 
 function renderPlayer(object) {
@@ -139,6 +152,7 @@ function handleInput(dt) {
 
 function updateEntities(dt) {
   player.sprite.update(dt);
+  grunt.sprite.update(dt);
 }
 
 window.onload = init();
