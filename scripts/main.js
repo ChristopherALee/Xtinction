@@ -134,7 +134,7 @@ function main() {
     render();
 
     lastTime = now;
-    requestAnimFrame(main);
+    requestAnimationFrame(main);
 }
 
 function init() {
@@ -236,6 +236,22 @@ function checkCollisions() {
           i--;
 
           rightBullets.splice(j, 1);
+
+          break;
+      }
+    }
+
+    for (let j = 0; j < leftBullets.length; j++) {
+      let leftBulletPos = leftBullets[j].pos;
+      let leftBulletSize = leftBullets[j].sprite.srcSize;
+
+      if (isCollision(
+        enemyPos[0], enemyPos[1], enemySize[0], enemySize[1],
+        leftBulletPos[0], leftBulletPos[1], leftBulletSize[0], leftBulletSize[1])) {
+          enemies.splice(i, 1);
+          i--;
+
+          leftBullets.splice(j, 1);
 
           break;
       }

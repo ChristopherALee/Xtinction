@@ -30,10 +30,10 @@ export const balrog = {
   pos: [700, 300],
   sprite: new Sprite(
     'https://i.imgur.com/WvHlsqj.png',
-    [20, 240],
+    [15, 240],
     [178, 178],
     [0, 0],
-    [170, 170],
+    [175, 165],
     5,
     [0, 1, 2, 3]
   )
