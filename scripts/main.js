@@ -151,7 +151,7 @@ let leftBullets = [];
 let previousShot = Date.now();
 
 let enemies = [
-  Monsters.cerberus,
+  Monsters.taurospear,
   Monsters.dragonTurtle,
   Monsters.balrog
 ];
