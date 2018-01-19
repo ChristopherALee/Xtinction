@@ -1,6 +1,6 @@
 import Sprite from './sprite.js';
 import player from './player.js';
-import bullet from './bullet.js';
+import * as Bullets from './bullet.js';
 import checkCollisions from './collisions.js';
 import * as Monsters from './enemies.js';
 
@@ -93,13 +93,17 @@ function handleInput(timeDifferential) {
     let x = player.pos[0] + (player.sprite.srcSize[0] / 2 + 35);
     let y = player.pos[1] + (player.sprite.srcSize[1] / 2 - 5);
 
-    rightBullets.push(bullet(x,y));
+    rightBullets.push(Bullets.bullet(x,y));
+    rightBullets.push(Bullets.bulletDiagUp(x,y));
+    rightBullets.push(Bullets.bulletDiagDown(x,y));
     previousShot = Date.now();
   } else if (window.input.pressed('SHOOT') && player.direction === 'LEFT' && ((Date.now() - previousShot) > 88)) {
     let x = player.pos[0] - (player.sprite.srcSize[0] / 2 - 21);
     let y = player.pos[1] + (player.sprite.srcSize[1] / 2 - 5);
 
-    leftBullets.push(bullet(x,y));
+    leftBullets.push(Bullets.bullet(x,y));
+    leftBullets.push(Bullets.bulletDiagUp(x,y));
+    leftBullets.push(Bullets.bulletDiagDown(x,y));
     previousShot = Date.now();
   }
 
@@ -126,9 +130,9 @@ function main() {
     lastTime = currentTime;
 
     update(timeDifferential);
+    requestAnimationFrame(main);
     render();
 
-    requestAnimationFrame(main);
 }
 
 function init() {
@@ -189,7 +193,19 @@ function updateAll(timeDifferential) {
   for (let i = 0; i < rightBullets.length; i++) {
     let currentRightBullet = rightBullets[i];
 
-    currentRightBullet.pos[0] += currentRightBullet.speed * timeDifferential;
+    switch (currentRightBullet.direction) {
+      case 'straight':
+        currentRightBullet.pos[0] += currentRightBullet.speed * timeDifferential;
+        break;
+      case 'diagUp':
+        currentRightBullet.pos[0] += currentRightBullet.speed * timeDifferential;
+        currentRightBullet.pos[1] -= currentRightBullet.speed * timeDifferential;
+        break;
+      case 'diagDown':
+        currentRightBullet.pos[0] += currentRightBullet.speed * timeDifferential;
+        currentRightBullet.pos[1] += currentRightBullet.speed * timeDifferential;
+        break;
+    }
   }
   for (let i = 0; i < leftBullets.length; i++) {
     let currentLeftBullet = leftBullets[i];
