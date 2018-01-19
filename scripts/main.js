@@ -199,18 +199,30 @@ function updateAll(timeDifferential) {
         break;
       case 'diagUp':
         currentRightBullet.pos[0] += currentRightBullet.speed * timeDifferential;
-        currentRightBullet.pos[1] -= currentRightBullet.speed * timeDifferential;
+        currentRightBullet.pos[1] -= (currentRightBullet.speed - 500) * timeDifferential;
         break;
       case 'diagDown':
         currentRightBullet.pos[0] += currentRightBullet.speed * timeDifferential;
-        currentRightBullet.pos[1] += currentRightBullet.speed * timeDifferential;
+        currentRightBullet.pos[1] += (currentRightBullet.speed - 500) * timeDifferential;
         break;
     }
   }
   for (let i = 0; i < leftBullets.length; i++) {
     let currentLeftBullet = leftBullets[i];
 
-    currentLeftBullet.pos[0] -= currentLeftBullet.speed * timeDifferential;
+    switch (currentLeftBullet.direction) {
+      case 'straight':
+        currentLeftBullet.pos[0] -= currentLeftBullet.speed * timeDifferential;
+        break;
+      case 'diagUp':
+        currentLeftBullet.pos[0] -= currentLeftBullet.speed * timeDifferential;
+        currentLeftBullet.pos[1] -= (currentLeftBullet.speed - 500) * timeDifferential;
+        break;
+      case 'diagDown':
+        currentLeftBullet.pos[0] -= currentLeftBullet.speed * timeDifferential;
+        currentLeftBullet.pos[1] += (currentLeftBullet.speed - 500) * timeDifferential;
+        break;
+    }
   }
 
   for (let i = 0; i < leftMonsters.length; i++) {

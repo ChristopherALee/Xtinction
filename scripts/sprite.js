@@ -26,15 +26,13 @@ class Sprite {
     }
 
     let x = this.srcPos[0];
-    let y = this.srcPos[1];
-
     x += frame * this.srcSize[0];
 
     let newImage = new Image(this.srcSize[0], this.srcSize[1]);
     newImage.src = this.url;
 
     ctx.drawImage(newImage,
-                  x, y,
+                  x, this.srcPos[1],
                   this.srcSize[0], this.srcSize[1],
                   this.canvasPos[0], this.canvasPos[1],
                   this.canvasSize[0], this.canvasSize[1]);
