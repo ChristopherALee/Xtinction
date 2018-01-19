@@ -3,13 +3,6 @@ import player from './player.js';
 import bullet from './bullet.js';
 import * as Monsters from './enemies.js';
 
-let requestAnimFrame = (function(){
-    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
-        function(callback){
-            window.setTimeout(callback, 1000 / 60);
-        };
-})();
-
 // player movement on key-press w/ event listeners
 let activeKeys = {};
 const checkKeyPress = () => {
@@ -127,13 +120,13 @@ function handleInput(timeDifferential) {
 
 let lastTime;
 function main() {
-    let now = Date.now();
-    let timeDifferential = (now - lastTime) / 1000.0;
+    let currentTime = Date.now();
+    let timeDifferential = (currentTime - lastTime) / 1000.0;
+    lastTime = currentTime;
 
     update(timeDifferential);
     render();
 
-    lastTime = now;
     requestAnimationFrame(main);
 }
 
@@ -145,6 +138,7 @@ function init() {
 // Game state
 let canvas = document.getElementById('canvas');
 let ctx = canvas.getContext('2d');
+let gameTime = 0;
 
 let rightBullets = [];
 let leftBullets = [];
@@ -164,10 +158,14 @@ function clearCanvas() {
 }
 
 function update(timeDifferential) {
+  gameTime += timeDifferential;
+
   clearCanvas();
   handleInput(timeDifferential);
   updateAll(timeDifferential);
   checkCollisions();
+
+  Monsters.spawnMonsters(gameTime, canvas, enemies);
 }
 
 function updateAll(timeDifferential) {
@@ -200,7 +198,6 @@ function updateAll(timeDifferential) {
     }
   }
 
-  enemies.forEach( (monster) => { monster.sprite.updateAnimation(timeDifferential); } )
 }
 
 function render() {
@@ -212,10 +209,10 @@ function render() {
   enemies.forEach( (monster) => { renderEntity(monster); });
 }
 
-function renderEntity(object) {
+function renderEntity(entity) {
   ctx.save();
-  ctx.translate(object.pos[0], object.pos[1]);
-  object.sprite.render(ctx);
+  ctx.translate(entity.pos[0], entity.pos[1]);
+  entity.sprite.render(ctx);
   ctx.restore();
 }
 
@@ -243,7 +240,7 @@ function checkCollisions() {
         enemyPos[0], enemyPos[1], enemySize[0], enemySize[1],
         rightBulletPos[0], rightBulletPos[1], rightBulletSize[0], rightBulletSize[1])) {
           enemies.splice(i, 1);
-          i--;
+          i -= 1;
 
           rightBullets.splice(j, 1);
 
