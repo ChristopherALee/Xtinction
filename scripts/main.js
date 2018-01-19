@@ -179,15 +179,25 @@ function updateAll(timeDifferential) {
   }
 
   // persisting bullet animations upon moving character direction
-  for (var i = 0; i < rightBullets.length; i++) {
+  for (let i = 0; i < rightBullets.length; i++) {
     let currentRightBullet = rightBullets[i];
 
     currentRightBullet.pos[0] += currentRightBullet.speed * timeDifferential;
   }
-  for (var i = 0; i < leftBullets.length; i++) {
+  for (let i = 0; i < leftBullets.length; i++) {
     let currentLeftBullet = leftBullets[i];
 
     currentLeftBullet.pos[0] -= currentLeftBullet.speed * timeDifferential;
+  }
+
+  for (let i = 0; i < enemies.length; i++) {
+    enemies[i].pos[0] -= enemies[i].speed * timeDifferential;
+    enemies[i].sprite.updateAnimation(timeDifferential);
+
+    if (enemies[i].pos[0] + enemies[i].sprite.srcSize[0] < 0) {
+      enemies.splice(i, 1);
+      i -= 1;
+    }
   }
 
   enemies.forEach( (monster) => { monster.sprite.updateAnimation(timeDifferential); } )
