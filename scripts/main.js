@@ -169,7 +169,7 @@ let rightMonsters = [
   Monsters.balrogRight
 ];
 
-let killAnimation = [];
+let killAnimations = [];
 
 let isGameOver;
 
@@ -183,10 +183,10 @@ function update(timeDifferential) {
   clearCanvas();
   handleInput(timeDifferential);
   updateAll(timeDifferential);
-  checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters);
+  checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters, killAnimations);
 
-  Monsters.spawnRightMonsters(gameTime, canvas, rightMonsters);
-  Monsters.spawnLeftMonsters(gameTime, canvas, leftMonsters);
+  // Monsters.spawnRightMonsters(gameTime, canvas, rightMonsters);
+  // Monsters.spawnLeftMonsters(gameTime, canvas, leftMonsters);
 }
 
 function updateAll(timeDifferential) {
@@ -298,6 +298,16 @@ function updateAll(timeDifferential) {
     }
   }
 
+  // animate kill animations
+  for (let i = 0; i < killAnimations.length; i++) {
+    killAnimations[i].sprite.updateAnimation(timeDifferential);
+
+    if (killAnimations[i].sprite.isDone) {
+      killAnimations.splice(i, 1);
+      i -= 1;
+    }
+  }
+
 }
 
 function render() {
@@ -308,6 +318,8 @@ function render() {
 
   leftMonsters.forEach( (monster) => { renderEntity(monster); });
   rightMonsters.forEach( (monster) => { renderEntity(monster); });
+
+  killAnimations.forEach( (kill) => { renderEntity(kill); });
 }
 
 function renderEntity(entity) {

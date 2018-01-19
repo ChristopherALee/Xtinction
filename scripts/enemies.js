@@ -3,6 +3,7 @@ import Sprite from './sprite.js';
 export const direction = ['straight', 'diagUp', 'diagDown'];
 
 export const taurospearRight = {
+  type: 'taurospear',
   pos: [1200, Math.random() * (700 - 175)],
   sprite: new Sprite(
     'https://i.imgur.com/jHYJaMs.png',
@@ -15,6 +16,7 @@ export const taurospearRight = {
   speed: 400
 };
 export const taurospearLeft = {
+  type: 'taurospear',
   pos: [0 - 215, Math.random() * (700 - 175)],
   sprite: new Sprite(
     'https://i.imgur.com/6TPUotY.png',
@@ -28,6 +30,7 @@ export const taurospearLeft = {
 };
 
 export const dragonTurtleRight = {
+  type: 'dragonTurtle',
   pos: [1200, Math.random() * (700 - 130)],
   sprite: new Sprite(
     'https://i.imgur.com/LRtOtZ3.png',
@@ -40,6 +43,7 @@ export const dragonTurtleRight = {
   speed: 100
 };
 export const dragonTurtleLeft = {
+  type: 'dragonTurtle',
   pos: [0 - 140, Math.random() * (700 - 130)],
   sprite: new Sprite(
     'https://i.imgur.com/a3LCa6u.png',
@@ -53,6 +57,7 @@ export const dragonTurtleLeft = {
 };
 
 export const balrogRight = {
+  type: 'balrog',
   pos: [1200, Math.random() * (700 - 178)],
   sprite: new Sprite(
     'https://i.imgur.com/WvHlsqj.png',
@@ -66,6 +71,7 @@ export const balrogRight = {
   speed: 200
 };
 export const balrogLeft = {
+  type: 'balrog',
   pos: [0 - 178, Math.random() * (700 - 178)],
   sprite: new Sprite(
     'https://i.imgur.com/xQBSQHu.png',
@@ -85,6 +91,7 @@ export const spawnRightMonsters= (gameTime, canvas, monsters) => {
   // spawn balrog from right
   if (Math.floor(gameTime * 1000) % 23 === 0) {
     monsters.push({
+      type: 'balrog',
       pos: [canvas.width, Math.random() * (canvas.height - 178)],
       sprite: new Sprite(
         'https://i.imgur.com/WvHlsqj.png',

@@ -8,7 +8,9 @@ class Sprite {
     this.speed = typeof speed === 'number' ? speed : 0;
     this.frames = frames;
     this.frameIdx = 0;
+    this.isDone = false;
   }
+
 
   updateAnimation(timeDifferential) {
     this.frameIdx += this.speed * timeDifferential;
@@ -21,9 +23,14 @@ class Sprite {
       let allFrames = this.frames.length;
       let idx = Math.floor(this.frameIdx);
       frame = this.frames[idx % allFrames];
+
+      if (idx >= this.frames.length) {
+        this.isDone = true;
+      }
     } else {
       frame = 0;
     }
+
 
     let x = this.srcPos[0];
     x += frame * this.srcSize[0];

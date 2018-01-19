@@ -2,6 +2,7 @@
 // import rightBullets from './main.js';
 // import leftMonsters from './main.js';
 // import rightMonsters from './main.js';
+import Sprite from './sprite.js';
 
 function isCollision(
   pos1X, pos1Y, size1X, size1Y,
@@ -14,7 +15,7 @@ function isCollision(
     );
 }
 
-function checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters) {
+function checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters, killAnimations) {
   for (let i = 0; i < rightMonsters.length; i++) {
     let enemyPos = rightMonsters[i].pos;
     let enemySize = rightMonsters[i].sprite.srcSize;
@@ -26,10 +27,30 @@ function checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters)
       if (isCollision(
         enemyPos[0], enemyPos[1], enemySize[0], enemySize[1],
         rightBulletPos[0], rightBulletPos[1], rightBulletSize[0], rightBulletSize[1])) {
+
+          // death animation
+          switch (rightMonsters[i].type) {
+            case 'balrog':
+            killAnimations.push({
+              pos: enemyPos,
+              sprite: new Sprite(
+                'https://i.imgur.com/WvHlsqj.png',
+                [-40, 2350],
+                [230, 230],
+                [0, 0],
+                [200, 200],
+                3,
+                [2]
+              )
+            });
+            break;
+          }
+
           rightMonsters.splice(i, 1);
           i -= 1;
 
           rightBullets.splice(j, 1);
+
 
           break;
       }
