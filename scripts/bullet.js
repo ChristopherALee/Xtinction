@@ -11,7 +11,7 @@ export const bullet = (x, y) => {
       [60, 60],
       0,
       [0]),
-    speed: 888,
+    speed: 1000,
     direction: 'straight'
   };
 };
@@ -28,7 +28,7 @@ export const bulletDiagUp = (x, y) => {
       0,
       [0]
     ),
-    speed: 888,
+    speed: 1000,
     direction: 'diagUp'
   };
 };
@@ -45,7 +45,7 @@ export const bulletDiagDown = (x, y) => {
       0,
       [0]
     ),
-    speed: 888,
+    speed: 1000,
     direction: 'diagDown'
   };
 };

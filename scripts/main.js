@@ -132,7 +132,6 @@ function main() {
     update(timeDifferential);
     requestAnimationFrame(main);
     render();
-
 }
 
 function init() {
@@ -198,12 +197,12 @@ function updateAll(timeDifferential) {
         currentRightBullet.pos[0] += currentRightBullet.speed * timeDifferential;
         break;
       case 'diagUp':
-        currentRightBullet.pos[0] += currentRightBullet.speed * timeDifferential;
-        currentRightBullet.pos[1] -= (currentRightBullet.speed - 500) * timeDifferential;
+        currentRightBullet.pos[0] += (currentRightBullet.speed) * timeDifferential;
+        currentRightBullet.pos[1] -= (currentRightBullet.speed - 800) * timeDifferential;
         break;
       case 'diagDown':
-        currentRightBullet.pos[0] += currentRightBullet.speed * timeDifferential;
-        currentRightBullet.pos[1] += (currentRightBullet.speed - 500) * timeDifferential;
+        currentRightBullet.pos[0] += (currentRightBullet.speed) * timeDifferential;
+        currentRightBullet.pos[1] += (currentRightBullet.speed - 800) * timeDifferential;
         break;
     }
   }
@@ -212,24 +211,40 @@ function updateAll(timeDifferential) {
 
     switch (currentLeftBullet.direction) {
       case 'straight':
-        currentLeftBullet.pos[0] -= currentLeftBullet.speed * timeDifferential;
+        currentLeftBullet.pos[0] -= (currentLeftBullet.speed) * timeDifferential;
         break;
       case 'diagUp':
-        currentLeftBullet.pos[0] -= currentLeftBullet.speed * timeDifferential;
-        currentLeftBullet.pos[1] -= (currentLeftBullet.speed - 500) * timeDifferential;
+        currentLeftBullet.pos[0] -= (currentLeftBullet.speed) * timeDifferential;
+        currentLeftBullet.pos[1] -= (currentLeftBullet.speed - 800) * timeDifferential;
         break;
       case 'diagDown':
         currentLeftBullet.pos[0] -= currentLeftBullet.speed * timeDifferential;
-        currentLeftBullet.pos[1] += (currentLeftBullet.speed - 500) * timeDifferential;
+        currentLeftBullet.pos[1] += (currentLeftBullet.speed - 800) * timeDifferential;
         break;
     }
   }
 
   for (let i = 0; i < leftMonsters.length; i++) {
     leftMonsters[i].pos[0] += leftMonsters[i].speed * timeDifferential;
+
+      switch (leftMonsters[i].direction) {
+        case 'straight':
+        break;
+        case 'diagUp':
+        leftMonsters[i].pos[1] -= leftMonsters[i].speed * timeDifferential;
+        break;
+        case 'diagDown':
+        leftMonsters[i].pos[1] += leftMonsters[i].speed * timeDifferential;
+        break;
+      }
+
     leftMonsters[i].sprite.updateAnimation(timeDifferential);
 
-    if (leftMonsters[i].pos[0] > canvas.width) {
+    if (
+      leftMonsters[i].pos[0] > canvas.width ||
+      leftMonsters[i].pos[1] < 0 ||
+      leftMonsters[i].pos[1] > canvas.height
+    ) {
       leftMonsters.splice(i, 1);
       i -= 1;
     }
@@ -237,9 +252,14 @@ function updateAll(timeDifferential) {
 
   for (let i = 0; i < rightMonsters.length; i++) {
     rightMonsters[i].pos[0] -= rightMonsters[i].speed * timeDifferential;
+
     rightMonsters[i].sprite.updateAnimation(timeDifferential);
 
-    if (rightMonsters[i].pos[0] + rightMonsters[i].sprite.srcSize[0] < 0) {
+    if (
+      rightMonsters[i].pos[0] + rightMonsters[i].sprite.srcSize[0] < 0 ||
+      rightMonsters[i].pos[1] < 0 ||
+      rightMonsters[i].pos[1] > canvas.height
+    ) {
       rightMonsters.splice(i, 1);
       i -= 1;
     }

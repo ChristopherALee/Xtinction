@@ -1,6 +1,6 @@
 import Sprite from './sprite.js';
 
-export const enemyList = [taurospearRight, dragonTurtleRight, balrogRight];
+export const direction = ['straight', 'diagUp', 'diagDown'];
 
 export const taurospearRight = {
   pos: [1200, Math.random() * (700 - 175)],
@@ -143,7 +143,8 @@ export const spawnLeftMonsters = (gameTime, canvas, monsters) => {
         3,
         [0, 1, 2, 3]
       ),
-      speed: 200
+      speed: 200,
+      direction: direction[Math.floor(Math.random() * direction.length)]
     });
 
     // spawn dragonturtle from left
@@ -157,7 +158,8 @@ export const spawnLeftMonsters = (gameTime, canvas, monsters) => {
         [150, 150],
         3,
         [5, 4, 3, 2, 1, 0]),
-      speed: 100
+      speed: 100,
+      direction: direction[Math.floor(Math.random() * direction.length)]
     });
   }
 
@@ -173,7 +175,8 @@ export const spawnLeftMonsters = (gameTime, canvas, monsters) => {
         [190, 190],
         6,
         [2, 1, 0]),
-      speed: 400
+      speed: 400,
+      direction: direction[Math.floor(Math.random() * direction.length)]
     });
   }
 };
