@@ -237,7 +237,7 @@ function isCollision(
   pos2X, pos2Y, size2X, size2Y) {
     return (
       pos1X < pos2X + size2X - 50 &&
-      pos1X + size1X > pos2X &&
+      pos1X + size1X - 100 > pos2X &&
       pos1Y < pos2Y + size2Y - 70 &&
       size1X + pos1Y > pos2Y
     );
@@ -277,6 +277,28 @@ function checkCollisions() {
           leftBullets.splice(j, 1);
 
           break;
+      }
+    }
+  }
+
+  for (let i = 0; i < leftMonsters.length; i++) {
+    let monsterPos = leftMonsters[i].pos;
+    let monsterSize = leftMonsters[i].sprite.srcSize;
+
+    for (let j = 0; j < leftBullets.length; j++) {
+      let leftBulletPos = leftBullets[j].pos;
+      let leftBulletSize = leftBullets[j].sprite.srcSize;
+
+      if (isCollision(
+        monsterPos[0], monsterPos[1], monsterSize[0], monsterSize[1],
+        leftBulletPos[0], leftBulletPos[1], leftBulletSize[0], leftBulletSize[1]
+      )) {
+        leftMonsters.splice(i, 1);
+        i -= 1;
+
+        leftBullets.splice(j, 1);
+
+        break;
       }
     }
   }
