@@ -290,7 +290,7 @@ function updateAll(timeDifferential) {
 
     if (
       rightMonsters[i].pos[0] + rightMonsters[i].sprite.srcSize[0] < 0 ||
-      rightMonsters[i].pos[1] < 0 ||
+      rightMonsters[i].pos[1] + rightMonsters[i].sprite.srcSize[1] < 0 ||
       rightMonsters[i].pos[1] > canvas.height
     ) {
       rightMonsters.splice(i, 1);
