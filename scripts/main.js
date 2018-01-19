@@ -1,6 +1,7 @@
 import Sprite from './sprite.js';
 import player from './player.js';
 import bullet from './bullet.js';
+import checkCollisions from './collisions.js';
 import * as Monsters from './enemies.js';
 
 // player movement on key-press w/ event listeners
@@ -167,7 +168,7 @@ function update(timeDifferential) {
   clearCanvas();
   handleInput(timeDifferential);
   updateAll(timeDifferential);
-  checkCollisions();
+  checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters);
 
   // Monsters.spawnRightMonsters(gameTime, canvas, rightMonsters);
   // Monsters.spawnLeftMonsters(gameTime, canvas, leftMonsters);

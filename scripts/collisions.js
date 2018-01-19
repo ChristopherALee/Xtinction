@@ -1,7 +1,7 @@
-import leftBullets from './main.js';
-import rightBullets from './main.js';
-import leftMonsters from './main.js';
-import rightMonsters from './main.js';
+// import leftBullets from './main.js';
+// import rightBullets from './main.js';
+// import leftMonsters from './main.js';
+// import rightMonsters from './main.js';
 
 function isCollision(
   pos1X, pos1Y, size1X, size1Y,
@@ -14,7 +14,7 @@ function isCollision(
     );
 }
 
-function checkCollisions() {
+function checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters) {
   for (let i = 0; i < rightMonsters.length; i++) {
     let enemyPos = rightMonsters[i].pos;
     let enemySize = rightMonsters[i].sprite.srcSize;
