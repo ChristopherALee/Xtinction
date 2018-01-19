@@ -183,11 +183,6 @@ function update(timeDifferential) {
 function updateAll(timeDifferential) {
   player.sprite.updateAnimation(timeDifferential);
 
-  if (rightBullets.length + leftBullets.length >= 150) {
-    rightBullets = rightBullets.slice(75);
-    leftBullets = leftBullets.slice(75);
-  }
-
   // persisting bullet animations upon moving character direction
   for (let i = 0; i < rightBullets.length; i++) {
     let currentRightBullet = rightBullets[i];
@@ -205,6 +200,15 @@ function updateAll(timeDifferential) {
         currentRightBullet.pos[1] += (currentRightBullet.speed - 800) * timeDifferential;
         break;
     }
+
+    if (
+      currentRightBullet.pos[0] > canvas.width ||
+      currentRightBullet.pos[1] > canvas.height ||
+      currentRightBullet.pos[1] < 0
+    ) {
+      rightBullets.splice(i, 1);
+      i -= 1;
+    }
   }
   for (let i = 0; i < leftBullets.length; i++) {
     let currentLeftBullet = leftBullets[i];
@@ -221,6 +225,15 @@ function updateAll(timeDifferential) {
         currentLeftBullet.pos[0] -= currentLeftBullet.speed * timeDifferential;
         currentLeftBullet.pos[1] += (currentLeftBullet.speed - 800) * timeDifferential;
         break;
+    }
+
+    if (
+      currentLeftBullet.pos[0] > canvas.width ||
+      currentLeftBullet.pos[1] > canvas.height ||
+      currentLeftBullet.pos[1] < 0
+    ) {
+      leftBullets.splice(i, 1);
+      i -= 1;
     }
   }
 
