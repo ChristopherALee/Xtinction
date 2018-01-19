@@ -123,6 +123,15 @@ function handleInput(timeDifferential) {
    }
 }
 
+const customRequestAnimationFrame = (main) => {
+  return (
+    window.requestAnimationFrame(main) ||
+    window.mozRequestAnimationFrame(main) ||
+    window.webkitRequestAnimationFrame(main) ||
+    window.msRequestAnimationFrame(main)
+  );
+};
+
 let lastTime;
 function main() {
     let currentTime = Date.now();
@@ -130,7 +139,7 @@ function main() {
     lastTime = currentTime;
 
     update(timeDifferential);
-    requestAnimationFrame(main);
+    customRequestAnimationFrame(main);
     render();
 }
 
@@ -176,8 +185,8 @@ function update(timeDifferential) {
   updateAll(timeDifferential);
   checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters);
 
-  // Monsters.spawnRightMonsters(gameTime, canvas, rightMonsters);
-  // Monsters.spawnLeftMonsters(gameTime, canvas, leftMonsters);
+  Monsters.spawnRightMonsters(gameTime, canvas, rightMonsters);
+  Monsters.spawnLeftMonsters(gameTime, canvas, leftMonsters);
 }
 
 function updateAll(timeDifferential) {
@@ -255,7 +264,7 @@ function updateAll(timeDifferential) {
 
     if (
       leftMonsters[i].pos[0] > canvas.width ||
-      leftMonsters[i].pos[1] < 0 ||
+      leftMonsters[i].pos[1] + leftMonsters[i].sprite.srcSize[1] < 0 ||
       leftMonsters[i].pos[1] > canvas.height
     ) {
       leftMonsters.splice(i, 1);
@@ -265,6 +274,17 @@ function updateAll(timeDifferential) {
 
   for (let i = 0; i < rightMonsters.length; i++) {
     rightMonsters[i].pos[0] -= rightMonsters[i].speed * timeDifferential;
+
+    switch (rightMonsters[i].direction) {
+      case 'straight':
+      break;
+      case 'diagUp':
+      rightMonsters[i].pos[1] -= (rightMonsters[i].speed / 4) * timeDifferential;
+      break;
+      case 'diagDown':
+      rightMonsters[i].pos[1] += (rightMonsters[i].speed / 4) * timeDifferential;
+      break;
+    }
 
     rightMonsters[i].sprite.updateAnimation(timeDifferential);
 
