@@ -140,14 +140,18 @@ let canvas = document.getElementById('canvas');
 let ctx = canvas.getContext('2d');
 let gameTime = 0;
 
-let rightBullets = [];
 let leftBullets = [];
+let rightBullets = [];
 let previousShot = Date.now();
 
-let enemies = [
-  Monsters.taurospear,
-  Monsters.dragonTurtle,
-  Monsters.balrog
+let leftMonsters = [
+  Monsters.balrogLeft
+];
+
+let rightMonsters = [
+  Monsters.taurospearRight,
+  Monsters.dragonTurtleRight,
+  Monsters.balrogRight
 ];
 let explosions = [];
 
@@ -165,7 +169,8 @@ function update(timeDifferential) {
   updateAll(timeDifferential);
   checkCollisions();
 
-  Monsters.spawnMonsters(gameTime, canvas, enemies);
+  // Monsters.spawnRightMonsters(gameTime, canvas, rightMonsters);
+  // Monsters.spawnLeftMonsters(gameTime, canvas, leftMonsters);
 }
 
 function updateAll(timeDifferential) {
@@ -188,12 +193,22 @@ function updateAll(timeDifferential) {
     currentLeftBullet.pos[0] -= currentLeftBullet.speed * timeDifferential;
   }
 
-  for (let i = 0; i < enemies.length; i++) {
-    enemies[i].pos[0] -= enemies[i].speed * timeDifferential;
-    enemies[i].sprite.updateAnimation(timeDifferential);
+  for (let i = 0; i < leftMonsters.length; i++) {
+    leftMonsters[i].pos[0] += leftMonsters[i].speed * timeDifferential;
+    leftMonsters[i].sprite.updateAnimation(timeDifferential);
 
-    if (enemies[i].pos[0] + enemies[i].sprite.srcSize[0] < 0) {
-      enemies.splice(i, 1);
+    if (leftMonsters[i].pos[0] + leftMonsters[i].sprite.srcSize[0] > canvas.width) {
+      leftMonsters.splice(i, 1);
+      i -= 1;
+    }
+  }
+
+  for (let i = 0; i < rightMonsters.length; i++) {
+    rightMonsters[i].pos[0] -= rightMonsters[i].speed * timeDifferential;
+    rightMonsters[i].sprite.updateAnimation(timeDifferential);
+
+    if (rightMonsters[i].pos[0] + rightMonsters[i].sprite.srcSize[0] < 0) {
+      rightMonsters.splice(i, 1);
       i -= 1;
     }
   }
@@ -203,10 +218,11 @@ function updateAll(timeDifferential) {
 function render() {
   renderEntity(player);
 
-  rightBullets.forEach( (bullet) => renderEntity(bullet));
   leftBullets.forEach( (bullet) => renderEntity(bullet));
+  rightBullets.forEach( (bullet) => renderEntity(bullet));
 
-  enemies.forEach( (monster) => { renderEntity(monster); });
+  leftMonsters.forEach( (monster) => { renderEntity(monster); });
+  rightMonsters.forEach( (monster) => { renderEntity(monster); });
 }
 
 function renderEntity(entity) {
@@ -228,9 +244,9 @@ function isCollision(
 }
 
 function checkCollisions() {
-  for (let i = 0; i < enemies.length; i++) {
-    let enemyPos = enemies[i].pos;
-    let enemySize = enemies[i].sprite.srcSize;
+  for (let i = 0; i < rightMonsters.length; i++) {
+    let enemyPos = rightMonsters[i].pos;
+    let enemySize = rightMonsters[i].sprite.srcSize;
 
     for (let j = 0; j < rightBullets.length; j++) {
       let rightBulletPos = rightBullets[j].pos;
@@ -239,7 +255,7 @@ function checkCollisions() {
       if (isCollision(
         enemyPos[0], enemyPos[1], enemySize[0], enemySize[1],
         rightBulletPos[0], rightBulletPos[1], rightBulletSize[0], rightBulletSize[1])) {
-          enemies.splice(i, 1);
+          rightMonsters.splice(i, 1);
           i -= 1;
 
           rightBullets.splice(j, 1);
@@ -255,7 +271,7 @@ function checkCollisions() {
       if (isCollision(
         enemyPos[0], enemyPos[1], enemySize[0], enemySize[1],
         leftBulletPos[0], leftBulletPos[1], leftBulletSize[0], leftBulletSize[1])) {
-          enemies.splice(i, 1);
+          rightMonsters.splice(i, 1);
           i--;
 
           leftBullets.splice(j, 1);

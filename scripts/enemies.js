@@ -1,8 +1,8 @@
 import Sprite from './sprite.js';
 
-export const enemyList = [taurospear, dragonTurtle, balrog];
+export const enemyList = [taurospearRight, dragonTurtleRight, balrogRight];
 
-export const taurospear = {
+export const taurospearRight = {
   pos: [1200, Math.random() * (700 - 175)],
   sprite: new Sprite(
     'https://i.imgur.com/jHYJaMs.png',
@@ -15,7 +15,7 @@ export const taurospear = {
   speed: 400
 };
 
-export const dragonTurtle = {
+export const dragonTurtleRight = {
   pos: [1200, Math.random() * (700 - 130)],
   sprite: new Sprite(
     'https://i.imgur.com/LRtOtZ3.png',
@@ -28,7 +28,7 @@ export const dragonTurtle = {
   speed: 100
 };
 
-export const balrog = {
+export const balrogRight = {
   pos: [1200, Math.random() * (700 - 178)],
   sprite: new Sprite(
     'https://i.imgur.com/WvHlsqj.png',
@@ -41,12 +41,25 @@ export const balrog = {
   ),
   speed: 200
 };
+export const balrogLeft = {
+  pos: [0 - 178, Math.random() * (700 - 178)],
+  sprite: new Sprite(
+    'https://i.imgur.com/xQBSQHu.png',
+    [161, 240],
+    [178, 178],
+    [0, 0],
+    [150, 165],
+    3,
+    [0, 1, 2, 3]
+  ),
+  speed: 200
+};
 
-export const spawnMonsters= (gameTime, canvas, enemies) => {
+export const spawnRightMonsters= (gameTime, canvas, monsters) => {
   // continuous monster spawn that gradually increases rate of spawn
   if (Math.random() < 1 - Math.pow(0.99, gameTime / 10)) {
     // spawn balrog from right
-    enemies.push({
+    monsters.push({
       pos: [canvas.width, Math.random() * (canvas.height - 178)],
       sprite: new Sprite(
         'https://i.imgur.com/WvHlsqj.png',
@@ -61,7 +74,7 @@ export const spawnMonsters= (gameTime, canvas, enemies) => {
     });
 
     // spawn dragonTurtle from right
-    enemies.push({
+    monsters.push({
       pos: [canvas.width, Math.random() * (canvas.height - 130)],
       sprite: new Sprite(
         'https://i.imgur.com/LRtOtZ3.png',
@@ -77,7 +90,7 @@ export const spawnMonsters= (gameTime, canvas, enemies) => {
 
   if (Math.random() < 1 - Math.pow(0.99, gameTime / 15)) {
     // spawn taurospear from right
-    enemies.push({
+    monsters.push({
       pos: [canvas.width, Math.random() * (canvas.height - 175)],
       sprite: new Sprite(
         'https://i.imgur.com/jHYJaMs.png',
@@ -88,6 +101,25 @@ export const spawnMonsters= (gameTime, canvas, enemies) => {
         6,
         [0, 1, 2]),
       speed: 400
+    });
+  }
+};
+
+export const spawnLeftMonsters = (gameTime, canvas, monsters) => {
+  if (Math.random() < 1 - Math.pow(0.99, gameTime / 10)) {
+    // spawn balrog from left
+    monsters.push({
+      pos: [0 - 178, Math.random() * (canvas.height - 178)],
+      sprite: new Sprite(
+        'https://i.imgur.com/xQBSQHu.png',
+        [30, 240],
+        [178, 178],
+        [0, 0],
+        [175, 165],
+        3,
+        [0, 1, 2, 3]
+      ),
+      speed: 150
     });
   }
 };
