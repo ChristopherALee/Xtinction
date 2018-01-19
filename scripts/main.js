@@ -146,6 +146,7 @@ let rightBullets = [];
 let previousShot = Date.now();
 
 let leftMonsters = [
+  Monsters.dragonTurtleLeft,
   Monsters.balrogLeft
 ];
 

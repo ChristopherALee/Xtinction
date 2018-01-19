@@ -27,6 +27,18 @@ export const dragonTurtleRight = {
     [0, 1, 2, 3, 4, 5]),
   speed: 100
 };
+export const dragonTurtleLeft = {
+  pos: [0 - 140, Math.random() * (700 - 130)],
+  sprite: new Sprite(
+    'https://i.imgur.com/a3LCa6u.png',
+    [1100, 125],
+    [140, 130],
+    [0, 0],
+    [150, 150],
+    3,
+    [5, 4, 3, 2, 1, 0]),
+  speed: 100
+};
 
 export const balrogRight = {
   pos: [1200, Math.random() * (700 - 178)],
@@ -50,7 +62,7 @@ export const balrogLeft = {
     [0, 0],
     [150, 165],
     3,
-    [0, 1, 2, 3]
+    [3,2,1,0]
   ),
   speed: 200
 };
@@ -112,14 +124,14 @@ export const spawnLeftMonsters = (gameTime, canvas, monsters) => {
       pos: [0 - 178, Math.random() * (canvas.height - 178)],
       sprite: new Sprite(
         'https://i.imgur.com/xQBSQHu.png',
-        [30, 240],
+        [161, 240],
         [178, 178],
         [0, 0],
-        [175, 165],
+        [150, 165],
         3,
         [0, 1, 2, 3]
       ),
-      speed: 150
+      speed: 200
     });
   }
 };
