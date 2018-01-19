@@ -231,10 +231,10 @@ function updateAll(timeDifferential) {
         case 'straight':
         break;
         case 'diagUp':
-        leftMonsters[i].pos[1] -= leftMonsters[i].speed * timeDifferential;
+        leftMonsters[i].pos[1] -= (leftMonsters[i].speed / 4) * timeDifferential;
         break;
         case 'diagDown':
-        leftMonsters[i].pos[1] += leftMonsters[i].speed * timeDifferential;
+        leftMonsters[i].pos[1] += (leftMonsters[i].speed / 4) * timeDifferential;
         break;
       }
 
