@@ -14,6 +14,18 @@ export const taurospearRight = {
     [0, 1, 2]),
   speed: 400
 };
+export const taurospearLeft = {
+  pos: [0 - 215, Math.random() * (700 - 175)],
+  sprite: new Sprite(
+    'https://i.imgur.com/6TPUotY.png',
+    [2175, 175],
+    [215, 175],
+    [0, 0],
+    [190, 190],
+    6,
+    [2, 1, 0]),
+  speed: 400
+};
 
 export const dragonTurtleRight = {
   pos: [1200, Math.random() * (700 - 130)],

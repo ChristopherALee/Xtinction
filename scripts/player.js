@@ -1,7 +1,7 @@
 import Sprite from './sprite.js';
 
 let player = {
-    pos: [250, 350],
+    pos: [550, 350],
     sprite: new Sprite(
       'https://i.imgur.com/6n1qcVc.png',
       [125, 874],

@@ -146,6 +146,7 @@ let rightBullets = [];
 let previousShot = Date.now();
 
 let leftMonsters = [
+  Monsters.taurospearLeft,
   Monsters.dragonTurtleLeft,
   Monsters.balrogLeft
 ];
@@ -155,7 +156,8 @@ let rightMonsters = [
   Monsters.dragonTurtleRight,
   Monsters.balrogRight
 ];
-let explosions = [];
+
+let killAnimation = [];
 
 let isGameOver;
 
@@ -199,7 +201,7 @@ function updateAll(timeDifferential) {
     leftMonsters[i].pos[0] += leftMonsters[i].speed * timeDifferential;
     leftMonsters[i].sprite.updateAnimation(timeDifferential);
 
-    if (leftMonsters[i].pos[0] + leftMonsters[i].sprite.srcSize[0] > canvas.width) {
+    if (leftMonsters[i].pos[0] > canvas.width) {
       leftMonsters.splice(i, 1);
       i -= 1;
     }
