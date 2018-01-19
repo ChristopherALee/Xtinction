@@ -72,6 +72,23 @@ function checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters)
         break;
       }
     }
+
+    for (let k = 0; k < rightBullets.length; k++) {
+      let rightBulletPos = rightBullets[k].pos;
+      let rightBulletSize = rightBullets[k].sprite.srcSize;
+
+      if (isCollision(
+        monsterPos[0], monsterPos[1], monsterSize[0], monsterSize[1],
+        rightBulletPos[0], rightBulletPos[1], rightBulletSize[0], rightBulletSize[1]
+      )) {
+        leftMonsters.splice(i, 1);
+        i -= 1;
+
+        rightBullets.splice(k, 1);
+
+        break;
+      }
+    }
   }
 }
 
