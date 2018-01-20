@@ -52,9 +52,10 @@ export const duckSpriteRight = new Sprite(
   8,
   [0, 1, 2, 3]);
 
+// starting position
 export const duckPlayer = {
   pos: [550, 350],
-  sprite: duckSpriteRight,
+  sprite: duckSpriteIdleRight,
   speed: 388,
   direction: 'RIGHT'
 };

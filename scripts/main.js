@@ -55,10 +55,20 @@ function handleInput(timeDifferential) {
 
   // handles player movement
   if (window.input.pressed('DOWN')) {
+    if (Player.duckPlayer.direction === 'LEFT') {
+      Player.duckPlayer.sprite = Player.duckSpriteLeft;
+    } else {
+      Player.duckPlayer.sprite = Player.duckSpriteRight;
+    }
     Player.duckPlayer.pos[1] += Player.duckPlayer.speed * timeDifferential;
   }
 
   if (window.input.pressed('UP')) {
+    if (Player.duckPlayer.direction === 'LEFT') {
+      Player.duckPlayer.sprite = Player.duckSpriteLeft;
+    } else {
+      Player.duckPlayer.sprite = Player.duckSpriteRight;
+    }
     Player.duckPlayer.pos[1] -= Player.duckPlayer.speed * timeDifferential;
   }
 
@@ -74,10 +84,14 @@ function handleInput(timeDifferential) {
     Player.duckPlayer.pos[0] += Player.duckPlayer.speed * timeDifferential;
   }
 
-  if (!activeKeys['LEFT'] && Player.duckPlayer.direction === 'LEFT') {
+  if (
+    (!activeKeys['LEFT'] && !activeKeys['UP'] && !activeKeys['DOWN'])
+    && Player.duckPlayer.direction === 'LEFT') {
     Player.duckPlayer.sprite = Player.duckSpriteIdleLeft;
   }
-  if (!activeKeys['RIGHT'] && Player.duckPlayer.direction === 'RIGHT') {
+  if (
+    (!activeKeys['RIGHT'] && !activeKeys['UP'] && !activeKeys['DOWN'])
+    && Player.duckPlayer.direction === 'RIGHT') {
     Player.duckPlayer.sprite = Player.duckSpriteIdleRight;
   }
 
