@@ -28,9 +28,13 @@ function checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters,
         enemyPos[0], enemyPos[1], enemySize[0], enemySize[1],
         rightBulletPos[0], rightBulletPos[1], rightBulletSize[0], rightBulletSize[1])) {
 
-          // death animation
-          switch (rightMonsters[i].type) {
-            case 'balrog':
+          rightMonsters[i].hp -= 1;
+          rightBullets.splice(j, 1);
+
+          if (rightMonsters[i].hp === 0) {
+            // death animation
+            switch (rightMonsters[i].type) {
+              case 'balrog':
               killAnimations.push({
                 pos: enemyPos,
                 sprite: new Sprite(
@@ -45,7 +49,7 @@ function checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters,
                 )
               });
               break;
-            case 'taurospear':
+              case 'taurospear':
               killAnimations.push({
                 pos: enemyPos,
                 sprite: new Sprite(
@@ -60,7 +64,7 @@ function checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters,
                 )
               });
               break;
-            case 'wyvern':
+              case 'wyvern':
               killAnimations.push({
                 pos: enemyPos,
                 sprite: new Sprite(
@@ -75,15 +79,13 @@ function checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters,
                 )
               });
               break;
-          }
+            }
 
           rightMonsters.splice(i, 1);
           i -= 1;
 
-          rightBullets.splice(j, 1);
-
-
           break;
+        }
       }
     }
 

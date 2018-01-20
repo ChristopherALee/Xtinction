@@ -3,6 +3,7 @@ import Sprite from './sprite.js';
 export const direction = ['straight', 'diagUp', 'diagDown'];
 
 export const taurospearRight = {
+  hp: 30,
   type: 'taurospear',
   pos: [1200, Math.random() * (700 - 175)],
   sprite: new Sprite(
@@ -17,6 +18,7 @@ export const taurospearRight = {
   speed: 400
 };
 export const taurospearLeft = {
+  hp: 30,
   type: 'taurospear',
   pos: [0 - 215, Math.random() * (700 - 175)],
   sprite: new Sprite(
@@ -61,6 +63,7 @@ export const dragonTurtleLeft = {
 };
 
 export const balrogRight = {
+  hp: 20,
   type: 'balrog',
   pos: [1200, Math.random() * (700 - 178)],
   sprite: new Sprite(
@@ -76,6 +79,7 @@ export const balrogRight = {
   speed: 200
 };
 export const balrogLeft = {
+  hp: 20,
   type: 'balrog',
   pos: [0 - 178, Math.random() * (700 - 178)],
   sprite: new Sprite(
@@ -92,6 +96,7 @@ export const balrogLeft = {
 };
 
 export const wyvernLeft = {
+  hp: 15,
   type: 'wyvern',
   pos: [0 - 175, Math.random() * (700 - 175)],
   sprite: new Sprite(
@@ -109,6 +114,7 @@ export const wyvernLeft = {
 };
 
 export const wyvernRight = {
+  hp: 15,
   type: 'wyvern',
   pos: [1200, Math.random() * (700 - 175)],
   sprite: new Sprite(
