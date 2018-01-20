@@ -12,7 +12,8 @@ export const taurospearRight = {
     [0, 0],
     [190, 190],
     6,
-    [0, 1, 2]),
+    [0, 1, 2],
+  false),
   speed: 400
 };
 export const taurospearLeft = {
@@ -25,7 +26,8 @@ export const taurospearLeft = {
     [0, 0],
     [190, 190],
     6,
-    [2, 1, 0]),
+    [2, 1, 0],
+  false),
   speed: 400
 };
 
@@ -39,7 +41,8 @@ export const dragonTurtleRight = {
     [0, 0],
     [150, 150],
     3,
-    [0, 1, 2, 3, 4, 5]),
+    [0, 1, 2, 3, 4, 5],
+  false),
   speed: 100
 };
 export const dragonTurtleLeft = {
@@ -52,7 +55,8 @@ export const dragonTurtleLeft = {
     [0, 0],
     [150, 150],
     3,
-    [5, 4, 3, 2, 1, 0]),
+    [5, 4, 3, 2, 1, 0],
+  false),
   speed: 100
 };
 
@@ -66,7 +70,8 @@ export const balrogRight = {
     [0, 0],
     [175, 165],
     3,
-    [0, 1, 2, 3]
+    [0, 1, 2, 3],
+    false
   ),
   speed: 200
 };
@@ -80,7 +85,8 @@ export const balrogLeft = {
     [0, 0],
     [150, 165],
     3,
-    [3,2,1,0]
+    [3,2,1,0],
+    false
   ),
   speed: 200
 };
@@ -100,7 +106,8 @@ export const spawnRightMonsters= (gameTime, canvas, monsters) => {
         [0, 0],
         [175, 165],
         4,
-        [0, 1, 2, 3]
+        [0, 1, 2, 3],
+        false
       ),
       speed: 150,
       direction: direction[Math.floor(Math.random() * direction.length)]
@@ -135,7 +142,8 @@ export const spawnRightMonsters= (gameTime, canvas, monsters) => {
         [0, 0],
         [190, 190],
         6,
-        [0, 1, 2]),
+        [0, 1, 2],
+      false),
       speed: 400,
       direction: direction[Math.floor(Math.random() * direction.length)]
     });
@@ -152,7 +160,8 @@ export const spawnRightMonsters= (gameTime, canvas, monsters) => {
         [0, 0],
         [170, 170],
         8,
-        [0,1,2,3,4,5,4,3,2,1]
+        [0,1,2,3,4,5,4,3,2,1],
+        false
       ),
       speed: 300,
       direction: direction[Math.floor(Math.random() * direction.length)]
@@ -172,7 +181,8 @@ export const spawnLeftMonsters = (gameTime, canvas, monsters) => {
         [0, 0],
         [150, 165],
         4,
-        [0, 1, 2, 3]
+        [0, 1, 2, 3],
+        false
       ),
       speed: 200,
       direction: direction[Math.floor(Math.random() * direction.length)]
@@ -207,7 +217,8 @@ export const spawnLeftMonsters = (gameTime, canvas, monsters) => {
         [0, 0],
         [190, 190],
         6,
-        [2, 1, 0]),
+        [2, 1, 0],
+      false),
       speed: 400,
       direction: direction[Math.floor(Math.random() * direction.length)]
     });
@@ -224,7 +235,8 @@ export const spawnLeftMonsters = (gameTime, canvas, monsters) => {
         [0, 0],
         [170, 170],
         8,
-        [0,1,2,3,4,5,4,3,2,1]
+        [0,1,2,3,4,5,4,3,2,1],
+        false
       ),
       speed: 300,
       direction: direction[Math.floor(Math.random() * direction.length)]

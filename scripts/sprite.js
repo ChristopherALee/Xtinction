@@ -1,5 +1,5 @@
 class Sprite {
-  constructor(url, srcPos, srcSize, canvasPos, canvasSize, speed, frames) {
+  constructor(url, srcPos, srcSize, canvasPos, canvasSize, speed, frames, timed) {
     this.url = url;
     this.srcPos = srcPos;
     this.srcSize = srcSize;
@@ -8,6 +8,7 @@ class Sprite {
     this.speed = typeof speed === 'number' ? speed : 0;
     this.frames = frames;
     this.frameIdx = 0;
+    this.timed = timed;
     this.isDone = false;
   }
 
@@ -38,12 +39,21 @@ class Sprite {
     let newImage = new Image(this.srcSize[0], this.srcSize[1]);
     newImage.src = this.url;
 
-    ctx.drawImage(
-      newImage,
-      x, this.srcPos[1],
-      this.srcSize[0], this.srcSize[1],
-      this.canvasPos[0], this.canvasPos[1],
-      this.canvasSize[0], this.canvasSize[1]);
+    if (!this.timed) {
+      ctx.drawImage(
+        newImage,
+        x, this.srcPos[1],
+        this.srcSize[0], this.srcSize[1],
+        this.canvasPos[0], this.canvasPos[1],
+        this.canvasSize[0], this.canvasSize[1]);
+    } else if (this.timed && !this.isDone) {
+      ctx.drawImage(
+        newImage,
+        x, this.srcPos[1],
+        this.srcSize[0], this.srcSize[1],
+        this.canvasPos[0], this.canvasPos[1],
+        this.canvasSize[0], this.canvasSize[1]);
+    }
   }
 }
 
