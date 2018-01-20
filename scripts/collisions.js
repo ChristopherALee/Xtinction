@@ -200,6 +200,9 @@ function checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters,
         leftBulletPos[0], leftBulletPos[1], leftBulletSize[0], leftBulletSize[1]
       )) {
 
+        leftMonsters[i].hp -= 1;
+        leftBullets.splice(j, 1);
+
         hitAnimations.push({
           pos: leftBulletPos,
           sprite: new Sprite(
@@ -214,59 +217,59 @@ function checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters,
           )
         });
 
-        // left monster kill animations
-        switch (leftMonsters[i].type) {
-          case 'balrog':
+        if (leftMonsters[i].hp === 0) {
+          // left monster kill animations
+          switch (leftMonsters[i].type) {
+            case 'balrog':
+              killAnimations.push({
+                pos: monsterPos,
+                sprite: new Sprite(
+                  'https://i.imgur.com/xQBSQHu.png',
+                  [430, 2350],
+                  [230, 230],
+                  [0, 0],
+                  [200, 200],
+                  5,
+                  [2, 1, 0],
+                  true
+                )
+              });
+              break;
+            case 'taurospear':
             killAnimations.push({
               pos: monsterPos,
               sprite: new Sprite(
-                'https://i.imgur.com/xQBSQHu.png',
-                [430, 2350],
-                [230, 230],
+                'https://i.imgur.com/6TPUotY.png',
+                [1800, 930],
+                [215, 175],
                 [0, 0],
-                [200, 200],
-                5,
-                [2, 1, 0],
-                true
-              )
-            });
-            break;
-          case 'taurospear':
-          killAnimations.push({
-            pos: monsterPos,
-            sprite: new Sprite(
-              'https://i.imgur.com/6TPUotY.png',
-              [1800, 930],
-              [215, 175],
-              [0, 0],
-              [190, 190],
-              6,
-              [7, 6, 5, 4, 3, 2, 1, 0],
-              true
-            )
-          });
-            break;
-          case 'wyvern':
-            killAnimations.push({
-              pos: monsterPos,
-              sprite: new Sprite(
-                'https://i.imgur.com/EdvKlUj.png',
-                [1640, 1600],
-                [175, 175],
-                [0, 0],
-                [170, 170],
+                [190, 190],
                 6,
-                [6, 5, 4, 3, 2, 1, 0],
+                [7, 6, 5, 4, 3, 2, 1, 0],
                 true
               )
             });
-            break;
+              break;
+            case 'wyvern':
+              killAnimations.push({
+                pos: monsterPos,
+                sprite: new Sprite(
+                  'https://i.imgur.com/EdvKlUj.png',
+                  [1640, 1600],
+                  [175, 175],
+                  [0, 0],
+                  [170, 170],
+                  6,
+                  [6, 5, 4, 3, 2, 1, 0],
+                  true
+                )
+              });
+              break;
+          }
+
+          leftMonsters.splice(i, 1);
+          i -= 1;
         }
-
-        leftMonsters.splice(i, 1);
-        i -= 1;
-
-        leftBullets.splice(j, 1);
 
         break;
       }
@@ -280,6 +283,9 @@ function checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters,
         monsterPos[0], monsterPos[1], monsterSize[0], monsterSize[1],
         rightBulletPos[0], rightBulletPos[1], rightBulletSize[0], rightBulletSize[1]
       )) {
+
+        leftMonsters[i].hp -= 1;
+        rightBullets.splice(k, 1);
 
         hitAnimations.push({
           pos: rightBulletPos,
@@ -295,59 +301,58 @@ function checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters,
           )
         });
 
-        // left monster kill animations
-        switch (leftMonsters[i].type) {
-          case 'balrog':
+        if (leftMonsters[i].hp === 0) {
+          // left monster kill animations
+          switch (leftMonsters[i].type) {
+            case 'balrog':
+              killAnimations.push({
+                pos: monsterPos,
+                sprite: new Sprite(
+                  'https://i.imgur.com/xQBSQHu.png',
+                  [430, 2350],
+                  [230, 230],
+                  [0, 0],
+                  [200, 200],
+                  5,
+                  [2, 1, 0],
+                  true
+                )
+              });
+              break;
+            case 'taurospear':
             killAnimations.push({
               pos: monsterPos,
               sprite: new Sprite(
-                'https://i.imgur.com/xQBSQHu.png',
-                [430, 2350],
-                [230, 230],
+                'https://i.imgur.com/6TPUotY.png',
+                [1800, 930],
+                [215, 175],
                 [0, 0],
-                [200, 200],
-                5,
-                [2, 1, 0],
-                true
-              )
-            });
-            break;
-          case 'taurospear':
-          killAnimations.push({
-            pos: monsterPos,
-            sprite: new Sprite(
-              'https://i.imgur.com/6TPUotY.png',
-              [1800, 930],
-              [215, 175],
-              [0, 0],
-              [190, 190],
-              6,
-              [7, 6, 5, 4, 3, 2, 1, 0],
-              true
-            )
-          });
-            break;
-          case 'wyvern':
-            killAnimations.push({
-              pos: monsterPos,
-              sprite: new Sprite(
-                'https://i.imgur.com/EdvKlUj.png',
-                [1640, 1600],
-                [175, 175],
-                [0, 0],
-                [170, 170],
+                [190, 190],
                 6,
-                [6, 5, 4, 3, 2, 1, 0],
+                [7, 6, 5, 4, 3, 2, 1, 0],
                 true
               )
             });
-            break;
+              break;
+            case 'wyvern':
+              killAnimations.push({
+                pos: monsterPos,
+                sprite: new Sprite(
+                  'https://i.imgur.com/EdvKlUj.png',
+                  [1640, 1600],
+                  [175, 175],
+                  [0, 0],
+                  [170, 170],
+                  6,
+                  [6, 5, 4, 3, 2, 1, 0],
+                  true
+                )
+              });
+              break;
+          }
+          leftMonsters.splice(i, 1);
+          i -= 1;
         }
-
-        leftMonsters.splice(i, 1);
-        i -= 1;
-
-        rightBullets.splice(k, 1);
 
         break;
       }

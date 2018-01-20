@@ -165,15 +165,15 @@ let rightBullets = [];
 let previousShot = Date.now();
 
 let leftMonsters = [
-  // Monsters.taurospearLeft,
-  // Monsters.balrogLeft,
-  // Monsters.wyvernLeft
+  Monsters.taurospearLeft,
+  Monsters.balrogLeft,
+  Monsters.wyvernLeft
 ];
 
 let rightMonsters = [
-  Monsters.taurospearRight,
-  Monsters.balrogRight,
-  Monsters.wyvernRight
+  // Monsters.taurospearRight,
+  // Monsters.balrogRight,
+  // Monsters.wyvernRight
 ];
 
 let hitAnimations = [];
