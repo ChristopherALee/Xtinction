@@ -16,6 +16,24 @@ export const robotPlayer = {
 };
 
 // duck player
+export const duckSpriteIdleLeft = new Sprite(
+  'https://i.imgur.com/IsLSheM.png',
+  [0, 37.7],
+  [60, 60],
+  [0, 0],
+  [75, 75],
+  8,
+  [0]);
+
+export const duckSpriteIdleRight = new Sprite(
+  'https://i.imgur.com/bxHEJ6i.png',
+  [93, 37.7],
+  [60, 60],
+  [0, 0],
+  [75, 75],
+  8,
+  [0]);
+
 export const duckSpriteLeft = new Sprite(
   'https://i.imgur.com/IsLSheM.png',
   [0, 145],

@@ -74,6 +74,13 @@ function handleInput(timeDifferential) {
     Player.duckPlayer.pos[0] += Player.duckPlayer.speed * timeDifferential;
   }
 
+  if (!activeKeys['LEFT'] && Player.duckPlayer.direction === 'LEFT') {
+    Player.duckPlayer.sprite = Player.duckSpriteIdleLeft;
+  }
+  if (!activeKeys['RIGHT'] && Player.duckPlayer.direction === 'RIGHT') {
+    Player.duckPlayer.sprite = Player.duckSpriteIdleRight;
+  }
+
   // handles directional shooting
   if (window.input.pressed('SHOOT') && Player.duckPlayer.direction === 'RIGHT' && ((Date.now() - previousShot) > 88)) {
     let x = Player.duckPlayer.pos[0] + (Player.duckPlayer.sprite.srcSize[0] / 2 + 15);
