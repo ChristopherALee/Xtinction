@@ -125,8 +125,8 @@ function handleInput(timeDifferential) {
    if (Player.duckPlayer.pos[1] < 0) {
      Player.duckPlayer.pos[1] = 0;
    }
-   else if (Player.duckPlayer.pos[1] >= canvas.height - Player.duckPlayer.sprite.srcSize[1]) {
-     Player.duckPlayer.pos[1] = canvas.height - Player.duckPlayer.sprite.srcSize[1];
+   else if (Player.duckPlayer.pos[1] >= canvas.height - Player.duckPlayer.sprite.srcSize[1] - 15) {
+     Player.duckPlayer.pos[1] = canvas.height - Player.duckPlayer.sprite.srcSize[1] - 15;
    }
 }
 
