@@ -166,13 +166,12 @@ let previousShot = Date.now();
 
 let leftMonsters = [
   Monsters.taurospearLeft,
-  Monsters.dragonTurtleLeft,
-  Monsters.balrogLeft
+  Monsters.balrogLeft,
+  Monsters.wyvernLeft
 ];
 
 let rightMonsters = [
   Monsters.taurospearRight,
-  Monsters.dragonTurtleRight,
   Monsters.balrogRight,
   Monsters.wyvernRight
 ];

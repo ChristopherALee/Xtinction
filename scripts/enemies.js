@@ -80,15 +80,32 @@ export const balrogLeft = {
   pos: [0 - 178, Math.random() * (700 - 178)],
   sprite: new Sprite(
     'https://i.imgur.com/xQBSQHu.png',
-    [161, 240],
+    [162, 240],
     [178, 178],
     [0, 0],
-    [150, 165],
+    [175, 165],
     3,
     [3,2,1,0],
     false
   ),
   speed: 200
+};
+
+export const wyvernLeft = {
+  type: 'wyvern',
+  pos: [0 - 175, Math.random() * (700 - 175)],
+  sprite: new Sprite(
+    'https://i.imgur.com/EdvKlUj.png',
+    [1817, 0],
+    [175, 175],
+    [0, 0],
+    [170, 170],
+    8,
+    [0,1,2,3,4,5,4,3,2,1],
+    false
+  ),
+  speed: 300,
+  direction: direction[Math.floor(Math.random() * direction.length)]
 };
 
 export const wyvernRight = {

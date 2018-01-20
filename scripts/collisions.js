@@ -142,7 +142,7 @@ function checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters,
               });
               break;
           }
-          
+
           rightMonsters.splice(i, 1);
           i--;
 
@@ -165,6 +165,56 @@ function checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters,
         monsterPos[0], monsterPos[1], monsterSize[0], monsterSize[1],
         leftBulletPos[0], leftBulletPos[1], leftBulletSize[0], leftBulletSize[1]
       )) {
+
+        // left monster kill animations
+        switch (leftMonsters[i].type) {
+          case 'balrog':
+            killAnimations.push({
+              pos: monsterPos,
+              sprite: new Sprite(
+                'https://i.imgur.com/xQBSQHu.png',
+                [430, 2350],
+                [230, 230],
+                [0, 0],
+                [200, 200],
+                5,
+                [2, 1, 0],
+                true
+              )
+            });
+            break;
+          case 'taurospear':
+          killAnimations.push({
+            pos: monsterPos,
+            sprite: new Sprite(
+              'https://i.imgur.com/6TPUotY.png',
+              [1800, 930],
+              [215, 175],
+              [0, 0],
+              [190, 190],
+              6,
+              [7, 6, 5, 4, 3, 2, 1, 0],
+              true
+            )
+          });
+            break;
+          case 'wyvern':
+            killAnimations.push({
+              pos: monsterPos,
+              sprite: new Sprite(
+                'https://i.imgur.com/EdvKlUj.png',
+                [1640, 1600],
+                [175, 175],
+                [0, 0],
+                [170, 170],
+                6,
+                [6, 5, 4, 3, 2, 1, 0],
+                true
+              )
+            });
+            break;
+        }
+
         leftMonsters.splice(i, 1);
         i -= 1;
 
@@ -182,6 +232,56 @@ function checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters,
         monsterPos[0], monsterPos[1], monsterSize[0], monsterSize[1],
         rightBulletPos[0], rightBulletPos[1], rightBulletSize[0], rightBulletSize[1]
       )) {
+
+        // left monster kill animations
+        switch (leftMonsters[i].type) {
+          case 'balrog':
+            killAnimations.push({
+              pos: monsterPos,
+              sprite: new Sprite(
+                'https://i.imgur.com/xQBSQHu.png',
+                [430, 2350],
+                [230, 230],
+                [0, 0],
+                [200, 200],
+                5,
+                [2, 1, 0],
+                true
+              )
+            });
+            break;
+          case 'taurospear':
+          killAnimations.push({
+            pos: monsterPos,
+            sprite: new Sprite(
+              'https://i.imgur.com/6TPUotY.png',
+              [1800, 930],
+              [215, 175],
+              [0, 0],
+              [190, 190],
+              6,
+              [7, 6, 5, 4, 3, 2, 1, 0],
+              true
+            )
+          });
+            break;
+          case 'wyvern':
+            killAnimations.push({
+              pos: monsterPos,
+              sprite: new Sprite(
+                'https://i.imgur.com/EdvKlUj.png',
+                [1640, 1600],
+                [175, 175],
+                [0, 0],
+                [170, 170],
+                6,
+                [6, 5, 4, 3, 2, 1, 0],
+                true
+              )
+            });
+            break;
+        }
+
         leftMonsters.splice(i, 1);
         i -= 1;
 
