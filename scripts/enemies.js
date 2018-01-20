@@ -131,11 +131,10 @@ export const wyvernRight = {
   direction: direction[Math.floor(Math.random() * direction.length)]
 };
 
-export const spawnRightMonsters= (gameTime, canvas, monsters) => {
-  // continuous monster spawn that gradually increases rate of spawn
-  // debugger
+export const spawnRightMonsters= (gameTime, canvas, monsters, spawnRate) => {
+
   // spawn balrog from right
-  if (Math.floor(gameTime * 1000) % 23 === 0) {
+  if (spawnRate === 0) {
     monsters.push({
       hp: 10,
       type: 'balrog',
@@ -173,7 +172,7 @@ export const spawnRightMonsters= (gameTime, canvas, monsters) => {
   // }
 
   // spawn taurospear from right
-  if (Math.floor(gameTime * 1000) % 43 === 0) {
+  if (spawnRate === 0) {
     monsters.push({
       hp: 20,
       type: 'taurospear',
@@ -186,14 +185,14 @@ export const spawnRightMonsters= (gameTime, canvas, monsters) => {
         [190, 190],
         6,
         [0, 1, 2],
-      false),
+        false),
       speed: 400,
       direction: direction[Math.floor(Math.random() * direction.length)]
     });
   }
 
   // spawn wyvern from right
-  if (Math.floor(gameTime * 1000) % 53 === 0) {
+  if (spawnRate === 0) {
     monsters.push({
       hp: 5,
       type: 'wyvern',
@@ -214,8 +213,8 @@ export const spawnRightMonsters= (gameTime, canvas, monsters) => {
   }
 };
 
-export const spawnLeftMonsters = (gameTime, canvas, monsters) => {
-  if (Math.floor(gameTime * 1000) % 23 === 0) {
+export const spawnLeftMonsters = (gameTime, canvas, monsters, spawnRate) => {
+  if (spawnRate === 0) {
     // spawn balrog from left
     monsters.push({
       hp: 10,
@@ -253,7 +252,7 @@ export const spawnLeftMonsters = (gameTime, canvas, monsters) => {
     // }
   }
 
-  if (Math.floor(gameTime * 1000) % 43 === 0) {
+  if (spawnRate === 0) {
     // spawn taurospear from left
     monsters.push({
       hp: 20,
@@ -274,7 +273,7 @@ export const spawnLeftMonsters = (gameTime, canvas, monsters) => {
   }
 
   // spawn wyvern from left
-  if (Math.floor(gameTime * 1000) % 53 === 0) {
+  if (spawnRate === 0) {
     monsters.push({
       hp: 5,
       type: 'wyvern',

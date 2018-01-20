@@ -160,14 +160,17 @@ let canvas = document.getElementById('canvas');
 let ctx = canvas.getContext('2d');
 let gameTime = 0;
 
+let spawnRate = 100;
+
+
 let leftBullets = [];
 let rightBullets = [];
 let previousShot = Date.now();
 
 let leftMonsters = [
-  Monsters.taurospearLeft,
-  Monsters.balrogLeft,
-  Monsters.wyvernLeft
+  // Monsters.taurospearLeft,
+  // Monsters.balrogLeft,
+  // Monsters.wyvernLeft
 ];
 
 let rightMonsters = [
@@ -188,13 +191,19 @@ function clearCanvas() {
 function update(timeDifferential) {
   gameTime += timeDifferential;
 
+  if (spawnRate < 0) {
+    spawnRate = 100;
+  } else {
+    spawnRate -= 1;
+  }
+
   clearCanvas();
   handleInput(timeDifferential);
   updateAll(timeDifferential);
   checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters, hitAnimations, killAnimations);
 
-  // Monsters.spawnRightMonsters(gameTime, canvas, rightMonsters);
-  // Monsters.spawnLeftMonsters(gameTime, canvas, leftMonsters);
+  Monsters.spawnRightMonsters(gameTime, canvas, rightMonsters, spawnRate);
+  // Monsters.spawnLeftMonsters(gameTime, canvas, leftMonsters, spawnRate);
 }
 
 function updateAll(timeDifferential) {
