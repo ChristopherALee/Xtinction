@@ -176,6 +176,7 @@ let rightMonsters = [
   Monsters.wyvernRight
 ];
 
+let hitAnimations = [];
 let killAnimations = [];
 
 let isGameOver;
@@ -190,7 +191,7 @@ function update(timeDifferential) {
   clearCanvas();
   handleInput(timeDifferential);
   updateAll(timeDifferential);
-  checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters, killAnimations);
+  checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters, hitAnimations, killAnimations);
 
   // Monsters.spawnRightMonsters(gameTime, canvas, rightMonsters);
   // Monsters.spawnLeftMonsters(gameTime, canvas, leftMonsters);
@@ -305,6 +306,16 @@ function updateAll(timeDifferential) {
     }
   }
 
+  // animate hit animations
+  for (let i = 0; i < hitAnimations.length; i++) {
+    hitAnimations[i].sprite.updateAnimation(timeDifferential);
+
+    if (hitAnimations[i].sprite.isDone) {
+      hitAnimations.splice(i, 1);
+      i -=1;
+    }
+  }
+
   // animate kill animations
   for (let i = 0; i < killAnimations.length; i++) {
     killAnimations[i].sprite.updateAnimation(timeDifferential);
@@ -326,6 +337,7 @@ function render() {
   leftMonsters.forEach( (monster) => { renderEntity(monster); });
   rightMonsters.forEach( (monster) => { renderEntity(monster); });
 
+  hitAnimations.forEach( (hit) => { renderEntity(hit); });
   killAnimations.forEach( (kill) => { renderEntity(kill); });
 }
 

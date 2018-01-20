@@ -15,7 +15,9 @@ function isCollision(
     );
 }
 
-function checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters, killAnimations) {
+function checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters, hitAnimations, killAnimations) {
+
+  // right monster collisions
   for (let i = 0; i < rightMonsters.length; i++) {
     let enemyPos = rightMonsters[i].pos;
     let enemySize = rightMonsters[i].sprite.srcSize;
@@ -30,6 +32,20 @@ function checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters,
 
           rightMonsters[i].hp -= 1;
           rightBullets.splice(j, 1);
+
+          hitAnimations.push({
+            pos: rightBulletPos,
+            sprite: new Sprite(
+              'https://i.imgur.com/LpgLmNZ.png',
+              [35, 860],
+              [75, 75],
+              [0, 0],
+              [40, 40],
+              10,
+              [0],
+              true
+            )
+          });
 
           if (rightMonsters[i].hp === 0) {
             // death animation
@@ -97,8 +113,26 @@ function checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters,
         enemyPos[0], enemyPos[1], enemySize[0], enemySize[1],
         leftBulletPos[0], leftBulletPos[1], leftBulletSize[0], leftBulletSize[1])) {
 
-          switch (rightMonsters[i].type) {
-            case 'balrog':
+          rightMonsters[i].hp -= 1;
+          leftBullets.splice(j, 1);
+
+          hitAnimations.push({
+            pos: leftBulletPos,
+            sprite: new Sprite(
+              'https://i.imgur.com/LpgLmNZ.png',
+              [35, 860],
+              [75, 75],
+              [0, 0],
+              [40, 40],
+              10,
+              [0],
+              true
+            )
+          });
+
+          if (rightMonsters[i].hp === 0) {
+            switch (rightMonsters[i].type) {
+              case 'balrog':
               killAnimations.push({
                 pos: enemyPos,
                 sprite: new Sprite(
@@ -113,7 +147,7 @@ function checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters,
                 )
               });
               break;
-            case 'taurospear':
+              case 'taurospear':
               killAnimations.push({
                 pos: enemyPos,
                 sprite: new Sprite(
@@ -128,7 +162,7 @@ function checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters,
                 )
               });
               break;
-            case 'wyvern':
+              case 'wyvern':
               killAnimations.push({
                 pos: enemyPos,
                 sprite: new Sprite(
@@ -143,18 +177,20 @@ function checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters,
                 )
               });
               break;
+            }
+
+            rightMonsters.splice(i, 1);
+            i -= 1;
+
           }
 
-          rightMonsters.splice(i, 1);
-          i--;
-
-          leftBullets.splice(j, 1);
 
           break;
-      }
+      // }
     }
   }
 
+  // left monster collisions
   for (let i = 0; i < leftMonsters.length; i++) {
     let monsterPos = leftMonsters[i].pos;
     let monsterSize = leftMonsters[i].sprite.srcSize;
@@ -167,6 +203,20 @@ function checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters,
         monsterPos[0], monsterPos[1], monsterSize[0], monsterSize[1],
         leftBulletPos[0], leftBulletPos[1], leftBulletSize[0], leftBulletSize[1]
       )) {
+
+        hitAnimations.push({
+          pos: leftBulletPos,
+          sprite: new Sprite(
+            'https://i.imgur.com/LpgLmNZ.png',
+            [35, 860],
+            [75, 75],
+            [0, 0],
+            [40, 40],
+            10,
+            [0],
+            true
+          )
+        });
 
         // left monster kill animations
         switch (leftMonsters[i].type) {
@@ -234,6 +284,20 @@ function checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters,
         monsterPos[0], monsterPos[1], monsterSize[0], monsterSize[1],
         rightBulletPos[0], rightBulletPos[1], rightBulletSize[0], rightBulletSize[1]
       )) {
+
+        hitAnimations.push({
+          pos: rightBulletPos,
+          sprite: new Sprite(
+            'https://i.imgur.com/LpgLmNZ.png',
+            [35, 860],
+            [75, 75],
+            [0, 0],
+            [40, 40],
+            10,
+            [0],
+            true
+          )
+        });
 
         // left monster kill animations
         switch (leftMonsters[i].type) {

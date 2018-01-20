@@ -3,7 +3,7 @@ import Sprite from './sprite.js';
 export const direction = ['straight', 'diagUp', 'diagDown'];
 
 export const taurospearRight = {
-  hp: 30,
+  hp: 20,
   type: 'taurospear',
   pos: [1200, Math.random() * (700 - 175)],
   sprite: new Sprite(
@@ -18,7 +18,7 @@ export const taurospearRight = {
   speed: 400
 };
 export const taurospearLeft = {
-  hp: 30,
+  hp: 20,
   type: 'taurospear',
   pos: [0 - 215, Math.random() * (700 - 175)],
   sprite: new Sprite(
@@ -63,7 +63,7 @@ export const dragonTurtleLeft = {
 };
 
 export const balrogRight = {
-  hp: 20,
+  hp: 10,
   type: 'balrog',
   pos: [1200, Math.random() * (700 - 178)],
   sprite: new Sprite(
@@ -79,7 +79,7 @@ export const balrogRight = {
   speed: 200
 };
 export const balrogLeft = {
-  hp: 20,
+  hp: 10,
   type: 'balrog',
   pos: [0 - 178, Math.random() * (700 - 178)],
   sprite: new Sprite(
@@ -96,7 +96,7 @@ export const balrogLeft = {
 };
 
 export const wyvernLeft = {
-  hp: 15,
+  hp: 5,
   type: 'wyvern',
   pos: [0 - 175, Math.random() * (700 - 175)],
   sprite: new Sprite(
@@ -114,7 +114,7 @@ export const wyvernLeft = {
 };
 
 export const wyvernRight = {
-  hp: 15,
+  hp: 5,
   type: 'wyvern',
   pos: [1200, Math.random() * (700 - 175)],
   sprite: new Sprite(
@@ -137,6 +137,7 @@ export const spawnRightMonsters= (gameTime, canvas, monsters) => {
   // spawn balrog from right
   if (Math.floor(gameTime * 1000) % 23 === 0) {
     monsters.push({
+      hp: 10,
       type: 'balrog',
       pos: [canvas.width, Math.random() * (canvas.height - 178)],
       sprite: new Sprite(
@@ -174,6 +175,7 @@ export const spawnRightMonsters= (gameTime, canvas, monsters) => {
   // spawn taurospear from right
   if (Math.floor(gameTime * 1000) % 43 === 0) {
     monsters.push({
+      hp: 20,
       type: 'taurospear',
       pos: [canvas.width, Math.random() * (canvas.height - 175)],
       sprite: new Sprite(
@@ -193,6 +195,7 @@ export const spawnRightMonsters= (gameTime, canvas, monsters) => {
   // spawn wyvern from right
   if (Math.floor(gameTime * 1000) % 53 === 0) {
     monsters.push({
+      hp: 5,
       type: 'wyvern',
       pos: [canvas.width, Math.random() * (canvas.height - 175)],
       sprite: new Sprite(
@@ -215,6 +218,7 @@ export const spawnLeftMonsters = (gameTime, canvas, monsters) => {
   if (Math.floor(gameTime * 1000) % 23 === 0) {
     // spawn balrog from left
     monsters.push({
+      hp: 10,
       type: 'balrog',
       pos: [0 - 178, Math.random() * (canvas.height - 178)],
       sprite: new Sprite(
@@ -252,6 +256,7 @@ export const spawnLeftMonsters = (gameTime, canvas, monsters) => {
   if (Math.floor(gameTime * 1000) % 43 === 0) {
     // spawn taurospear from left
     monsters.push({
+      hp: 20,
       type: 'taurospear',
       pos: [0 - 215, Math.random() * (700 - 175)],
       sprite: new Sprite(
@@ -271,6 +276,7 @@ export const spawnLeftMonsters = (gameTime, canvas, monsters) => {
   // spawn wyvern from left
   if (Math.floor(gameTime * 1000) % 53 === 0) {
     monsters.push({
+      hp: 5,
       type: 'wyvern',
       pos: [0 - 175, Math.random() * (canvas.height - 175)],
       sprite: new Sprite(
