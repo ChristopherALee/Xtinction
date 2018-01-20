@@ -35,12 +35,12 @@ function checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters,
                 pos: enemyPos,
                 sprite: new Sprite(
                   'https://i.imgur.com/WvHlsqj.png',
-                  [-40, 2350],
+                  [-50, 2350],
                   [230, 230],
                   [0, 0],
                   [200, 200],
-                  3,
-                  [2],
+                  5,
+                  [0, 1, 2],
                   true
                 )
               });
@@ -56,6 +56,21 @@ function checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters,
                   [190, 190],
                   6,
                   [0, 1, 2, 3, 4, 5, 6, 7],
+                  true
+                )
+              });
+              break;
+            case 'wyvern':
+              killAnimations.push({
+                pos: enemyPos,
+                sprite: new Sprite(
+                  'https://i.imgur.com/MAUkqfk.png',
+                  [5, 1600],
+                  [175, 175],
+                  [0, 0],
+                  [170, 170],
+                  6,
+                  [0, 1, 2, 3, 4, 5, 6],
                   true
                 )
               });

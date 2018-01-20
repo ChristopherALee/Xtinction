@@ -91,6 +91,23 @@ export const balrogLeft = {
   speed: 200
 };
 
+export const wyvernRight = {
+  type: 'wyvern',
+  pos: [1200, Math.random() * (700 - 175)],
+  sprite: new Sprite(
+    'https://i.imgur.com/MAUkqfk.png',
+    [5, 0],
+    [175, 175],
+    [0, 0],
+    [170, 170],
+    8,
+    [0,1,2,3,4,5,4,3,2,1],
+    false
+  ),
+  speed: 300,
+  direction: direction[Math.floor(Math.random() * direction.length)]
+};
+
 export const spawnRightMonsters= (gameTime, canvas, monsters) => {
   // continuous monster spawn that gradually increases rate of spawn
   // debugger
@@ -134,6 +151,7 @@ export const spawnRightMonsters= (gameTime, canvas, monsters) => {
   // spawn taurospear from right
   if (Math.floor(gameTime * 1000) % 43 === 0) {
     monsters.push({
+      type: 'taurospear',
       pos: [canvas.width, Math.random() * (canvas.height - 175)],
       sprite: new Sprite(
         'https://i.imgur.com/jHYJaMs.png',
@@ -152,6 +170,7 @@ export const spawnRightMonsters= (gameTime, canvas, monsters) => {
   // spawn wyvern from right
   if (Math.floor(gameTime * 1000) % 53 === 0) {
     monsters.push({
+      type: 'wyvern',
       pos: [canvas.width, Math.random() * (canvas.height - 175)],
       sprite: new Sprite(
         'https://i.imgur.com/MAUkqfk.png',
@@ -173,6 +192,7 @@ export const spawnLeftMonsters = (gameTime, canvas, monsters) => {
   if (Math.floor(gameTime * 1000) % 23 === 0) {
     // spawn balrog from left
     monsters.push({
+      type: 'balrog',
       pos: [0 - 178, Math.random() * (canvas.height - 178)],
       sprite: new Sprite(
         'https://i.imgur.com/xQBSQHu.png',
@@ -209,6 +229,7 @@ export const spawnLeftMonsters = (gameTime, canvas, monsters) => {
   if (Math.floor(gameTime * 1000) % 43 === 0) {
     // spawn taurospear from left
     monsters.push({
+      type: 'taurospear',
       pos: [0 - 215, Math.random() * (700 - 175)],
       sprite: new Sprite(
         'https://i.imgur.com/6TPUotY.png',
@@ -227,6 +248,7 @@ export const spawnLeftMonsters = (gameTime, canvas, monsters) => {
   // spawn wyvern from left
   if (Math.floor(gameTime * 1000) % 53 === 0) {
     monsters.push({
+      type: 'wyvern',
       pos: [0 - 175, Math.random() * (canvas.height - 175)],
       sprite: new Sprite(
         'https://i.imgur.com/EdvKlUj.png',

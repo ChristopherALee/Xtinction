@@ -173,7 +173,8 @@ let leftMonsters = [
 let rightMonsters = [
   Monsters.taurospearRight,
   Monsters.dragonTurtleRight,
-  Monsters.balrogRight
+  Monsters.balrogRight,
+  Monsters.wyvernRight
 ];
 
 let killAnimations = [];
