@@ -1,5 +1,5 @@
 import Sprite from './sprite.js';
-import player from './player.js';
+import * as Player from './player.js';
 import * as Bullets from './bullet.js';
 import checkCollisions from './collisions.js';
 import * as Monsters from './enemies.js';
@@ -55,51 +55,37 @@ function handleInput(timeDifferential) {
 
   // handles player movement
   if (window.input.pressed('DOWN')) {
-    player.pos[1] += player.speed * timeDifferential;
+    Player.duckPlayer.pos[1] += Player.duckPlayer.speed * timeDifferential;
   }
 
   if (window.input.pressed('UP')) {
-    player.pos[1] -= player.speed * timeDifferential;
+    Player.duckPlayer.pos[1] -= Player.duckPlayer.speed * timeDifferential;
   }
 
   if (window.input.pressed('LEFT')) {
-    player.direction = 'LEFT';
-    player.sprite = new Sprite(
-      'https://i.imgur.com/T9EWHuO.png',
-      [570, 874],
-      [100, 100],
-      [0, 0],
-      [100, 100],
-      5,
-      [0]);
-    player.pos[0] -= player.speed * timeDifferential;
+    Player.duckPlayer.direction = 'LEFT';
+    Player.duckPlayer.sprite = Player.duckSpriteLeft;
+    Player.duckPlayer.pos[0] -= Player.duckPlayer.speed * timeDifferential;
   }
 
   if (window.input.pressed('RIGHT')) {
-    player.direction = 'RIGHT';
-    player.sprite = new Sprite(
-      'https://i.imgur.com/6n1qcVc.png',
-      [125, 874],
-      [100, 100],
-      [0, 0],
-      [100, 100],
-      5,
-      [0]);
-    player.pos[0] += player.speed * timeDifferential;
+    Player.duckPlayer.direction = 'RIGHT';
+    Player.duckPlayer.sprite = Player.duckSpriteRight;
+    Player.duckPlayer.pos[0] += Player.duckPlayer.speed * timeDifferential;
   }
 
   // handles directional shooting
-  if (window.input.pressed('SHOOT') && player.direction === 'RIGHT' && ((Date.now() - previousShot) > 88)) {
-    let x = player.pos[0] + (player.sprite.srcSize[0] / 2 + 35);
-    let y = player.pos[1] + (player.sprite.srcSize[1] / 2 - 5);
+  if (window.input.pressed('SHOOT') && Player.duckPlayer.direction === 'RIGHT' && ((Date.now() - previousShot) > 88)) {
+    let x = Player.duckPlayer.pos[0] + (Player.duckPlayer.sprite.srcSize[0] / 2 + 15);
+    let y = Player.duckPlayer.pos[1] + (Player.duckPlayer.sprite.srcSize[1] / 2 + 6);
 
     rightBullets.push(Bullets.bullet(x,y));
     rightBullets.push(Bullets.bulletDiagUp(x,y));
     rightBullets.push(Bullets.bulletDiagDown(x,y));
     previousShot = Date.now();
-  } else if (window.input.pressed('SHOOT') && player.direction === 'LEFT' && ((Date.now() - previousShot) > 88)) {
-    let x = player.pos[0] - (player.sprite.srcSize[0] / 2 - 21);
-    let y = player.pos[1] + (player.sprite.srcSize[1] / 2 - 5);
+  } else if (window.input.pressed('SHOOT') && Player.duckPlayer.direction === 'LEFT' && ((Date.now() - previousShot) > 88)) {
+    let x = Player.duckPlayer.pos[0] - (Player.duckPlayer.sprite.srcSize[0] / 2 - 15);
+    let y = Player.duckPlayer.pos[1] + (Player.duckPlayer.sprite.srcSize[1] / 2 + 5);
 
     leftBullets.push(Bullets.bullet(x,y));
     leftBullets.push(Bullets.bulletDiagUp(x,y));
@@ -107,19 +93,19 @@ function handleInput(timeDifferential) {
     previousShot = Date.now();
   }
 
-  // handles player boundaries
-  if (player.pos[0] < 0) {
-     player.pos[0] = 0;
+  // handles Player.duckPlayer boundaries
+  if (Player.duckPlayer.pos[0] < 0) {
+     Player.duckPlayer.pos[0] = 0;
    }
-   else if (player.pos[0] >= canvas.width - player.sprite.srcSize[0] - 10) {
-     player.pos[0] = canvas.width - player.sprite.srcSize[0] - 10;
+   else if (Player.duckPlayer.pos[0] >= canvas.width - Player.duckPlayer.sprite.srcSize[0] - 10) {
+     Player.duckPlayer.pos[0] = canvas.width - Player.duckPlayer.sprite.srcSize[0] - 10;
    }
 
-   if (player.pos[1] < 0) {
-     player.pos[1] = 0;
+   if (Player.duckPlayer.pos[1] < 0) {
+     Player.duckPlayer.pos[1] = 0;
    }
-   else if (player.pos[1] >= canvas.height - player.sprite.srcSize[1]) {
-     player.pos[1] = canvas.height - player.sprite.srcSize[1];
+   else if (Player.duckPlayer.pos[1] >= canvas.height - Player.duckPlayer.sprite.srcSize[1]) {
+     Player.duckPlayer.pos[1] = canvas.height - Player.duckPlayer.sprite.srcSize[1];
    }
 }
 
@@ -190,7 +176,7 @@ function update(timeDifferential) {
 }
 
 function updateAll(timeDifferential) {
-  player.sprite.updateAnimation(timeDifferential);
+  Player.duckPlayer.sprite.updateAnimation(timeDifferential);
 
   // persisting bullet animations upon moving character direction
   for (let i = 0; i < rightBullets.length; i++) {
@@ -311,7 +297,7 @@ function updateAll(timeDifferential) {
 }
 
 function render() {
-  renderEntity(player);
+  renderEntity(Player.duckPlayer);
 
   leftBullets.forEach( (bullet) => renderEntity(bullet));
   rightBullets.forEach( (bullet) => renderEntity(bullet));
