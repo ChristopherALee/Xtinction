@@ -94,6 +94,55 @@ function checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters,
       if (isCollision(
         enemyPos[0], enemyPos[1], enemySize[0], enemySize[1],
         leftBulletPos[0], leftBulletPos[1], leftBulletSize[0], leftBulletSize[1])) {
+
+          switch (rightMonsters[i].type) {
+            case 'balrog':
+              killAnimations.push({
+                pos: enemyPos,
+                sprite: new Sprite(
+                  'https://i.imgur.com/WvHlsqj.png',
+                  [-50, 2350],
+                  [230, 230],
+                  [0, 0],
+                  [200, 200],
+                  5,
+                  [0, 1, 2],
+                  true
+                )
+              });
+              break;
+            case 'taurospear':
+              killAnimations.push({
+                pos: enemyPos,
+                sprite: new Sprite(
+                  'https://i.imgur.com/jHYJaMs.png',
+                  [-10, 930],
+                  [215, 175],
+                  [0, 0],
+                  [190, 190],
+                  6,
+                  [0, 1, 2, 3, 4, 5, 6, 7],
+                  true
+                )
+              });
+              break;
+            case 'wyvern':
+              killAnimations.push({
+                pos: enemyPos,
+                sprite: new Sprite(
+                  'https://i.imgur.com/MAUkqfk.png',
+                  [5, 1600],
+                  [175, 175],
+                  [0, 0],
+                  [170, 170],
+                  6,
+                  [0, 1, 2, 3, 4, 5, 6],
+                  true
+                )
+              });
+              break;
+          }
+          
           rightMonsters.splice(i, 1);
           i--;
 
