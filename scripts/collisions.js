@@ -178,15 +178,11 @@ function checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters,
               });
               break;
             }
-
             rightMonsters.splice(i, 1);
             i -= 1;
-
           }
-
-
           break;
-      // }
+      }
     }
   }
 
