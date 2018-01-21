@@ -90,6 +90,8 @@ h2 {
   width: 200px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .fa-github {
@@ -104,6 +106,10 @@ h2 {
 .fa-linkedin:hover {
   color: red;
   cursor: pointer;
+}
+
+.game-container {
+  position: relative;
 }
 
 canvas {
@@ -125,6 +131,67 @@ canvas {
   align-items: center;
   flex-direction: column;
   border: 1px solid black;
+}
+
+.gameover-screen {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gameover-contents {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.gameover-text {
+  font-size: 130px;
+}
+
+.play-again {
+  padding-bottom: 75px;
+  font-family: Doom;
+  font-size: 80px;
+  text-shadow: -5px 0 black, 0 2px black, 2px 0 black, 0 -1px black;
+
+    animation:2s blinker linear infinite;
+   -webkit-animation:2s blinker linear infinite;
+   -moz-animation:2s blinker linear infinite;
+
+    color: red;
+   }
+
+   @-moz-keyframes blinker {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+    }
+
+   @-webkit-keyframes blinker {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+    }
+
+   @keyframes blinker {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+.gameover-overlay {
+  background-color: black;
+  opacity: 0.7;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
 }
 
 .play {

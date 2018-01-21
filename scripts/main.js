@@ -139,6 +139,11 @@ const customRequestAnimationFrame = (main) => {
   );
 };
 
+const gameOver = () => {
+  $(".gameover-screen").show();
+  isGameOver = true;
+};
+
 let lastTime;
 function main() {
     let currentTime = Date.now();
@@ -162,7 +167,6 @@ let gameTime = 0;
 
 let spawnRate = 100;
 
-
 let leftBullets = [];
 let rightBullets = [];
 let previousShot = Date.now();
@@ -182,7 +186,7 @@ let rightMonsters = [
 let hitAnimations = [];
 let killAnimations = [];
 
-let isGameOver;
+let isGameOver = false;
 
 function clearCanvas() {
   ctx.clearRect(0, 0, 1200, 700);
@@ -360,7 +364,7 @@ function renderEntity(entity) {
 // window.onload = init();
 let introSong = document.getElementById("intro-song");
 introSong.currentTime = 4;
-window.onload = introSong.play();
+// window.onload = introSong.play();
 
 document.addEventListener('keydown', (e) => {
   if (e.keyCode == 32) {
