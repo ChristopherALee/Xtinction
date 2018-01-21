@@ -161,18 +161,18 @@ const reset = () => {
 
 let lastTime;
 function main() {
-    let currentTime = Date.now();
-    let timeDifferential = (currentTime - lastTime) / 1000.0;
-    lastTime = currentTime;
+  let currentTime = Date.now();
+  let timeDifferential = (currentTime - lastTime) / 1000.0;
+  lastTime = currentTime;
 
-    update(timeDifferential);
-    customRequestAnimationFrame(main);
-    render();
+  update(timeDifferential);
+  customRequestAnimationFrame(main);
+  render();
 }
 
 function init() {
-    lastTime = Date.now();
-    main();
+  lastTime = Date.now();
+  main();
 }
 
 // Game state

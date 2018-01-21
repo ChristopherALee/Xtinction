@@ -16,7 +16,11 @@ let score = 0;
 
 function checkCollisions(player, willReset, leftBullets, rightBullets, leftMonsters, rightMonsters, hitAnimations, killAnimations) {
 
-  if (willReset) {
+  if (
+    willReset
+    && rightMonsters.length === 0
+    && leftMonsters.length === 0
+  ) {
     score = 0;
   }
 
