@@ -199,6 +199,13 @@ function checkCollisions(player, leftBullets, rightBullets, leftMonsters, rightM
     let monsterPos = leftMonsters[i].pos;
     let monsterSize = leftMonsters[i].sprite.srcSize;
 
+    if (isCollision(
+      monsterPos[0], monsterPos[1] - 100, monsterSize[0], monsterSize[1],
+      player.pos[0], player.pos[1], player.sprite.srcSize[0], player.sprite.srcSize[1]
+    )) {
+      gameOver();
+    }
+
     for (let j = 0; j < leftBullets.length; j++) {
       let leftBulletPos = leftBullets[j].pos;
       let leftBulletSize = leftBullets[j].sprite.srcSize;
