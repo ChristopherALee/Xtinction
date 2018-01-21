@@ -358,7 +358,9 @@ function renderEntity(entity) {
 }
 
 // window.onload = init();
-window.onload = document.getElementById("intro-song").play();
+let introSong = document.getElementById("intro-song");
+introSong.currentTime = 4;
+window.onload = introSong.play();
 
 document.addEventListener('keydown', (e) => {
   if (e.keyCode == 32) {
