@@ -179,19 +179,21 @@ function init() {
 // Game state
 let canvas = document.getElementById('canvas');
 let ctx = canvas.getContext('2d');
-let deadPlayer = {
-  pos: Player.duckPlayer.pos,
-  sprite: new Sprite (
-    'https://i.imgur.com/bxHEJ6i.png',
-    [15, 350],
-    [60, 60],
-    [0, 0],
-    [75, 75],
-    1,
-    [0]
-  ),
-  speed: 388,
-  direction: 'RIGHT'
+const deadPlayer = () => {
+  return {
+    pos: Player.duckPlayer.pos,
+    sprite: new Sprite (
+      'https://i.imgur.com/bxHEJ6i.png',
+      [15, 350],
+      [60, 60],
+      [0, 0],
+      [75, 75],
+      1,
+      [0]
+    ),
+    speed: 388,
+    direction: 'RIGHT'
+  };
 };
 let gameTime = 0;
 let willReset = false;
@@ -363,7 +365,7 @@ function updateAll(timeDifferential) {
 
 function render() {
   if (isGameOver) {
-    renderEntity(deadPlayer);
+    renderEntity(deadPlayer());
   } else {
     renderEntity(Player.duckPlayer);
   }
@@ -387,13 +389,13 @@ function renderEntity(entity) {
 
 let introSong = document.getElementById("intro-song");
 introSong.currentTime = 4;
-// window.onload = introSong.play();
+window.onload = introSong.play();
 
 document.addEventListener('keydown', (e) => {
   if (e.keyCode == 32) {
     // press spacebar to start the game
     document.getElementById("intro-song").pause();
-    // document.getElementById("main-song").play();
+    document.getElementById("main-song").play();
 
     $(".start-screen").hide();
     $("#canvas").show();
