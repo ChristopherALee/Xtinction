@@ -7,6 +7,11 @@ a {
   text-decoration: none;
   color: black;
 }
+
+ul {
+  list-style:none;
+  padding: 0;
+}
 /* reset end */
 
 @font-face {
@@ -83,7 +88,10 @@ h2 {
 }
 
 .control-directions {
+  font-size: 12px;
   color: red;
+  font-family: 'Press Start 2P', cursive;
+  margin-bottom: 5px;
 }
 
 .navlinks {
