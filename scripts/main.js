@@ -143,10 +143,12 @@ export const gameOver = () => {
   $(".gameover-overlay").show();
   $(".gameover-screen").show();
   isGameOver = true;
+  // willReset = true;
 };
 
 const reset = () => {
   gameTime = 0;
+  willReset = false;
   leftBullets = [];
   rightBullets = [];
   leftMonsters = [];
@@ -177,6 +179,7 @@ function init() {
 let canvas = document.getElementById('canvas');
 let ctx = canvas.getContext('2d');
 let gameTime = 0;
+let willReset = false;
 
 let spawnRate = 100;
 
@@ -217,7 +220,7 @@ function update(timeDifferential) {
   clearCanvas();
   handleInput(timeDifferential);
   updateAll(timeDifferential);
-  checkCollisions(Player.duckPlayer, leftBullets, rightBullets, leftMonsters, rightMonsters, hitAnimations, killAnimations);
+  checkCollisions(Player.duckPlayer, willReset, leftBullets, rightBullets, leftMonsters, rightMonsters, hitAnimations, killAnimations);
 
   Monsters.spawnRightMonsters(gameTime, canvas, rightMonsters, spawnRate);
   Monsters.spawnLeftMonsters(gameTime, canvas, leftMonsters, spawnRate);
@@ -393,5 +396,6 @@ document.addEventListener('keydown', (e) => {
     $(".gameover-overlay").hide();
     $(".gameover-screen").hide();
     reset();
+    willReset = true;
   }
 });

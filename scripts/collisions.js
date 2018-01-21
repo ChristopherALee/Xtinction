@@ -13,9 +13,14 @@ function isCollision(
 }
 
 let score = 0;
-document.getElementById('score').innerHTML = score;
 
-function checkCollisions(player, leftBullets, rightBullets, leftMonsters, rightMonsters, hitAnimations, killAnimations) {
+function checkCollisions(player, willReset, leftBullets, rightBullets, leftMonsters, rightMonsters, hitAnimations, killAnimations) {
+
+  if (willReset) {
+    score = 0;
+  }
+
+  document.getElementById('score').innerHTML = `Score: ${score}`;
 
   // right monster collisions
   for (let i = 0; i < rightMonsters.length; i++) {
