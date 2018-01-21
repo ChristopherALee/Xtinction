@@ -2,27 +2,39 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <style media="screen">
+      @font-face {
+        font-family: Doom;
+        src: url('AmazDooMLeft.ttf');
+      }
+    </style>
     <link rel="stylesheet" href="stylesheets/game.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title></title>
   </head>
   <body>
-    <div class="title">
-      <h1>X</h1>
-      <h2>tinction</h2>
-    </div>
 
     <div class="playarea">
       <div class="controls">
         Controls
       </div>
-      <canvas id="canvas" width="1200" height="700"></canvas>
+
+
+      <div class="game-container">
+        <div class="start-screen">
+          <div class="title">
+            <h1>X</h1>
+            <h2>tinction</h2>
+          </div>
+          
+          <p>Press SpaceBar To Play</p>
+        </div>
+        <canvas id="canvas" width="1200" height="700" style="display: none;"></canvas>
+      </div>
+
       <div class="navlinks">
         Github, Linkedin
       </div>
-    </div>
-
-    <div style="display: none;">
-      <img id="player" src="https://www.spriters-resource.com/resources/sheets/11/11226.gif" alt="">
     </div>
   </body>
 

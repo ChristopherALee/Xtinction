@@ -357,4 +357,11 @@ function renderEntity(entity) {
   ctx.restore();
 }
 
-window.onload = init();
+// window.onload = init();
+document.addEventListener('keydown', (e) => {
+  if (e.keyCode == 32) {
+    $(".start-screen").hide();
+    $("#canvas").show();
+    init();
+  }
+});
