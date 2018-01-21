@@ -143,7 +143,6 @@ export const gameOver = () => {
   $(".gameover-overlay").show();
   $(".gameover-screen").show();
   isGameOver = true;
-  // willReset = true;
 };
 
 const reset = () => {
@@ -377,10 +376,9 @@ function renderEntity(entity) {
   ctx.restore();
 }
 
-// window.onload = init();
 let introSong = document.getElementById("intro-song");
 introSong.currentTime = 4;
-// window.onload = introSong.play();
+window.onload = introSong.play();
 
 document.addEventListener('keydown', (e) => {
   if (e.keyCode == 32) {
