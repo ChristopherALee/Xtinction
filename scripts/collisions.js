@@ -3,6 +3,7 @@
 // import leftMonsters from './main.js';
 // import rightMonsters from './main.js';
 import Sprite from './sprite.js';
+import {gameOver} from './main.js';
 
 function isCollision(
   pos1X, pos1Y, size1X, size1Y,
@@ -15,12 +16,19 @@ function isCollision(
     );
 }
 
-function checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters, hitAnimations, killAnimations) {
+function checkCollisions(player, leftBullets, rightBullets, leftMonsters, rightMonsters, hitAnimations, killAnimations) {
 
   // right monster collisions
   for (let i = 0; i < rightMonsters.length; i++) {
     let enemyPos = rightMonsters[i].pos;
     let enemySize = rightMonsters[i].sprite.srcSize;
+
+    if (isCollision(
+      enemyPos[0], enemyPos[1] - 100, enemySize[0], enemySize[1],
+      player.pos[0], player.pos[1], player.sprite.srcSize[0], player.sprite.srcSize[1]
+    )) {
+      gameOver();
+    }
 
     for (let j = 0; j < rightBullets.length; j++) {
       let rightBulletPos = rightBullets[j].pos;

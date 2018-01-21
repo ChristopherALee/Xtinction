@@ -9,7 +9,6 @@
       }
     </style>
     <link rel="stylesheet" href="stylesheets/game.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
     <title>XTINCTION</title>
   </head>
@@ -41,11 +40,11 @@
           <p class="play">Press SpaceBar To Play</p>
         </div>
 
-        <div class="gameover-overlay"></div>
-        <div class="gameover-screen">
+        <div class="gameover-overlay" style="display: none"></div>
+        <div class="gameover-screen" style="display: none">
           <div class="gameover-contents">
             <h1 class="gameover-text">Game Over</h1>
-            <p class="play-again">Play Again?</p>
+            <p class="play-again">Press Enter to Play Again</p>
           </div>
         </div>
 
@@ -63,5 +62,6 @@
     </div>
   </body>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="./app/assets/javascripts/bundle.js" charset="utf-8"></script>
 </html>

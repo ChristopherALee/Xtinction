@@ -139,9 +139,22 @@ const customRequestAnimationFrame = (main) => {
   );
 };
 
-const gameOver = () => {
+export const gameOver = () => {
+  $(".gameover-overlay").show();
   $(".gameover-screen").show();
   isGameOver = true;
+};
+
+const reset = () => {
+  gameTime = 0;
+  leftBullets = [];
+  rightBullets = [];
+  leftMonsters = [];
+  rightMonsters = [];
+  hitAnimations = [];
+  killAnimations = [];
+  isGameOver = false;
+  Player.duckPlayer.pos = [550, 350];
 };
 
 let lastTime;
@@ -204,7 +217,7 @@ function update(timeDifferential) {
   clearCanvas();
   handleInput(timeDifferential);
   updateAll(timeDifferential);
-  checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters, hitAnimations, killAnimations);
+  checkCollisions(Player.duckPlayer, leftBullets, rightBullets, leftMonsters, rightMonsters, hitAnimations, killAnimations);
 
   Monsters.spawnRightMonsters(gameTime, canvas, rightMonsters, spawnRate);
   Monsters.spawnLeftMonsters(gameTime, canvas, leftMonsters, spawnRate);
@@ -367,6 +380,7 @@ introSong.currentTime = 4;
 // window.onload = introSong.play();
 
 document.addEventListener('keydown', (e) => {
+  // press spacebar to start the game
   if (e.keyCode == 32) {
     document.getElementById("intro-song").pause();
     document.getElementById("main-song").play();
@@ -374,5 +388,14 @@ document.addEventListener('keydown', (e) => {
     $(".start-screen").hide();
     $("#canvas").show();
     init();
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  // press enter to play again
+  if (e.keyCode == 13) {
+    $(".gameover-overlay").hide();
+    $(".gameover-screen").hide();
+    reset();
   }
 });
