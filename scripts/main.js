@@ -4,6 +4,8 @@ import * as Bullets from './bullet.js';
 import checkCollisions from './collisions.js';
 import * as Monsters from './enemies.js';
 
+let isGameOver = false;
+
 // player movement on key-press w/ event listeners
 let activeKeys = {};
 const checkKeyPress = () => {
@@ -54,7 +56,7 @@ checkKeyPress();
 function handleInput(timeDifferential) {
 
   // handles player movement
-  if (window.input.pressed('DOWN')) {
+  if (window.input.pressed('DOWN') && !isGameOver) {
     if (Player.duckPlayer.direction === 'LEFT') {
       Player.duckPlayer.sprite = Player.duckSpriteLeft;
     } else {
@@ -63,7 +65,7 @@ function handleInput(timeDifferential) {
     Player.duckPlayer.pos[1] += Player.duckPlayer.speed * timeDifferential;
   }
 
-  if (window.input.pressed('UP')) {
+  if (window.input.pressed('UP') && !isGameOver) {
     if (Player.duckPlayer.direction === 'LEFT') {
       Player.duckPlayer.sprite = Player.duckSpriteLeft;
     } else {
@@ -72,13 +74,13 @@ function handleInput(timeDifferential) {
     Player.duckPlayer.pos[1] -= Player.duckPlayer.speed * timeDifferential;
   }
 
-  if (window.input.pressed('LEFT')) {
+  if (window.input.pressed('LEFT') && !isGameOver) {
     Player.duckPlayer.direction = 'LEFT';
     Player.duckPlayer.sprite = Player.duckSpriteLeft;
     Player.duckPlayer.pos[0] -= Player.duckPlayer.speed * timeDifferential;
   }
 
-  if (window.input.pressed('RIGHT')) {
+  if (window.input.pressed('RIGHT') && !isGameOver) {
     Player.duckPlayer.direction = 'RIGHT';
     Player.duckPlayer.sprite = Player.duckSpriteRight;
     Player.duckPlayer.pos[0] += Player.duckPlayer.speed * timeDifferential;
@@ -96,7 +98,7 @@ function handleInput(timeDifferential) {
   }
 
   // handles directional shooting
-  if (window.input.pressed('SHOOT') && Player.duckPlayer.direction === 'RIGHT' && ((Date.now() - previousShot) > 88)) {
+  if (window.input.pressed('SHOOT') && !isGameOver && Player.duckPlayer.direction === 'RIGHT' && ((Date.now() - previousShot) > 88)) {
     let x = Player.duckPlayer.pos[0] + (Player.duckPlayer.sprite.srcSize[0] / 2 + 15);
     let y = Player.duckPlayer.pos[1] + (Player.duckPlayer.sprite.srcSize[1] / 2 + 6);
 
@@ -104,7 +106,7 @@ function handleInput(timeDifferential) {
     rightBullets.push(Bullets.bulletDiagUp(x,y));
     rightBullets.push(Bullets.bulletDiagDown(x,y));
     previousShot = Date.now();
-  } else if (window.input.pressed('SHOOT') && Player.duckPlayer.direction === 'LEFT' && ((Date.now() - previousShot) > 88)) {
+  } else if (window.input.pressed('SHOOT') && !isGameOver && Player.duckPlayer.direction === 'LEFT' && ((Date.now() - previousShot) > 88)) {
     let x = Player.duckPlayer.pos[0] - (Player.duckPlayer.sprite.srcSize[0] / 2 - 15);
     let y = Player.duckPlayer.pos[1] + (Player.duckPlayer.sprite.srcSize[1] / 2 + 5);
 
@@ -200,8 +202,6 @@ let rightMonsters = [
 
 let hitAnimations = [];
 let killAnimations = [];
-
-let isGameOver = false;
 
 function clearCanvas() {
   ctx.clearRect(0, 0, 1200, 700);
