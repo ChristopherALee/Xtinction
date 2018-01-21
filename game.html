@@ -10,7 +10,8 @@
     </style>
     <link rel="stylesheet" href="stylesheets/game.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <title></title>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
+    <title>XTINCTION</title>
   </head>
   <body>
     <audio id="intro-song" src="./music/intro.mp3"></audio>
@@ -22,9 +23,13 @@
 
     <div class="playarea">
       <div class="controls">
-        Controls
+        <p class="controls-title">Controls</p>
+        <p class="control-directions">W - Up</p>
+        <p class="control-directions">A - Left</p>
+        <p class="control-directions">S - Right</p>
+        <p class="control-directions">D - Down</p>
+        <p class="control-directions">K - Shoot</p>
       </div>
-
 
       <div class="game-container">
         <div class="start-screen">
@@ -33,13 +38,18 @@
             <h2>tinction</h2>
           </div>
 
-          <p>Press SpaceBar To Play</p>
+          <p class="play">Press SpaceBar To Play</p>
         </div>
         <canvas id="canvas" width="1200" height="700" style="display: none;"></canvas>
       </div>
 
       <div class="navlinks">
-        Github, Linkedin
+        <a href="https://github.com/ChristopherALee">
+          <i class="fab fa-github fa-10x"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/christopheradamlee/">
+          <i class="fab fa-linkedin fa-10x"></i>
+        </a>
       </div>
     </div>
   </body>

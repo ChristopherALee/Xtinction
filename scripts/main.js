@@ -203,7 +203,7 @@ function update(timeDifferential) {
   checkCollisions(leftBullets, rightBullets, leftMonsters, rightMonsters, hitAnimations, killAnimations);
 
   Monsters.spawnRightMonsters(gameTime, canvas, rightMonsters, spawnRate);
-  // Monsters.spawnLeftMonsters(gameTime, canvas, leftMonsters, spawnRate);
+  Monsters.spawnLeftMonsters(gameTime, canvas, leftMonsters, spawnRate);
 }
 
 function updateAll(timeDifferential) {
