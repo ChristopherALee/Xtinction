@@ -358,8 +358,13 @@ function renderEntity(entity) {
 }
 
 // window.onload = init();
+window.onload = document.getElementById("intro-song").play();
+
 document.addEventListener('keydown', (e) => {
   if (e.keyCode == 32) {
+    document.getElementById("intro-song").pause();
+    document.getElementById("main-song").play();
+
     $(".start-screen").hide();
     $("#canvas").show();
     init();
