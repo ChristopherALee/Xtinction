@@ -124,16 +124,15 @@ canvas {
   display: flex;
 }
 
-.score-text {
-  
-}
-
 #score {
   font-size: 30px;
   color: yellow;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 10px;
+  right: 30px;
+  font-family: Doom;
+  font-size: 40px;
+  text-shadow: -1px 0 red, 0 1px red, 1px 0 black, 0 -1px black;
 }
 
 .start-screen {
