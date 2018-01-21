@@ -1,7 +1,3 @@
-// import leftBullets from './main.js';
-// import rightBullets from './main.js';
-// import leftMonsters from './main.js';
-// import rightMonsters from './main.js';
 import Sprite from './sprite.js';
 import {gameOver} from './main.js';
 
@@ -16,6 +12,9 @@ function isCollision(
     );
 }
 
+let score = 0;
+document.getElementById('score').innerHTML = score;
+
 function checkCollisions(player, leftBullets, rightBullets, leftMonsters, rightMonsters, hitAnimations, killAnimations) {
 
   // right monster collisions
@@ -23,6 +22,7 @@ function checkCollisions(player, leftBullets, rightBullets, leftMonsters, rightM
     let enemyPos = rightMonsters[i].pos;
     let enemySize = rightMonsters[i].sprite.srcSize;
 
+    // player death
     if (isCollision(
       enemyPos[0], enemyPos[1] - 100, enemySize[0], enemySize[1],
       player.pos[0], player.pos[1], player.sprite.srcSize[0], player.sprite.srcSize[1]
@@ -59,21 +59,22 @@ function checkCollisions(player, leftBullets, rightBullets, leftMonsters, rightM
             // death animation
             switch (rightMonsters[i].type) {
               case 'balrog':
-              killAnimations.push({
-                pos: enemyPos,
-                sprite: new Sprite(
-                  'https://i.imgur.com/WvHlsqj.png',
-                  [-50, 2350],
-                  [230, 230],
-                  [0, 0],
-                  [200, 200],
-                  5,
-                  [0, 1, 2],
-                  true
-                )
-              });
+                killAnimations.push({
+                  pos: enemyPos,
+                  sprite: new Sprite(
+                    'https://i.imgur.com/WvHlsqj.png',
+                    [-50, 2350],
+                    [230, 230],
+                    [0, 0],
+                    [200, 200],
+                    5,
+                    [0, 1, 2],
+                    true
+                  )
+                });
+                score += 2;
               break;
-              case 'taurospear':
+            case 'taurospear':
               killAnimations.push({
                 pos: enemyPos,
                 sprite: new Sprite(
@@ -87,8 +88,9 @@ function checkCollisions(player, leftBullets, rightBullets, leftMonsters, rightM
                   true
                 )
               });
+              score += 3;
               break;
-              case 'wyvern':
+            case 'wyvern':
               killAnimations.push({
                 pos: enemyPos,
                 sprite: new Sprite(
@@ -102,9 +104,11 @@ function checkCollisions(player, leftBullets, rightBullets, leftMonsters, rightM
                   true
                 )
               });
+              score += 1;
               break;
             }
 
+          document.getElementById('score').innerHTML = `Score: ${score}`;
           rightMonsters.splice(i, 1);
           i -= 1;
 
@@ -154,6 +158,7 @@ function checkCollisions(player, leftBullets, rightBullets, leftMonsters, rightM
                   true
                 )
               });
+              score += 2;
               break;
               case 'taurospear':
               killAnimations.push({
@@ -169,6 +174,7 @@ function checkCollisions(player, leftBullets, rightBullets, leftMonsters, rightM
                   true
                 )
               });
+              score += 3;
               break;
               case 'wyvern':
               killAnimations.push({
@@ -184,8 +190,11 @@ function checkCollisions(player, leftBullets, rightBullets, leftMonsters, rightM
                   true
                 )
               });
+              score += 1;
               break;
             }
+
+            document.getElementById('score').innerHTML = `Score: ${score}`;
             rightMonsters.splice(i, 1);
             i -= 1;
           }
@@ -199,6 +208,7 @@ function checkCollisions(player, leftBullets, rightBullets, leftMonsters, rightM
     let monsterPos = leftMonsters[i].pos;
     let monsterSize = leftMonsters[i].sprite.srcSize;
 
+    // player death
     if (isCollision(
       monsterPos[0], monsterPos[1] - 100, monsterSize[0], monsterSize[1],
       player.pos[0], player.pos[1], player.sprite.srcSize[0], player.sprite.srcSize[1]
@@ -249,21 +259,23 @@ function checkCollisions(player, leftBullets, rightBullets, leftMonsters, rightM
                   true
                 )
               });
+              score += 2;
               break;
             case 'taurospear':
-            killAnimations.push({
-              pos: monsterPos,
-              sprite: new Sprite(
-                'https://i.imgur.com/6TPUotY.png',
-                [1800, 930],
-                [215, 175],
-                [0, 0],
-                [190, 190],
-                6,
-                [7, 6, 5, 4, 3, 2, 1, 0],
-                true
-              )
-            });
+              killAnimations.push({
+                pos: monsterPos,
+                sprite: new Sprite(
+                  'https://i.imgur.com/6TPUotY.png',
+                  [1800, 930],
+                  [215, 175],
+                  [0, 0],
+                  [190, 190],
+                  6,
+                  [7, 6, 5, 4, 3, 2, 1, 0],
+                  true
+                )
+              });
+              score += 3;
               break;
             case 'wyvern':
               killAnimations.push({
@@ -279,9 +291,11 @@ function checkCollisions(player, leftBullets, rightBullets, leftMonsters, rightM
                   true
                 )
               });
+              score += 1;
               break;
           }
 
+          document.getElementById('score').innerHTML = `Score: ${score}`;
           leftMonsters.splice(i, 1);
           i -= 1;
         }
@@ -333,21 +347,23 @@ function checkCollisions(player, leftBullets, rightBullets, leftMonsters, rightM
                   true
                 )
               });
+              score += 1;
               break;
             case 'taurospear':
-            killAnimations.push({
-              pos: monsterPos,
-              sprite: new Sprite(
-                'https://i.imgur.com/6TPUotY.png',
-                [1800, 930],
-                [215, 175],
-                [0, 0],
-                [190, 190],
-                6,
-                [7, 6, 5, 4, 3, 2, 1, 0],
-                true
-              )
-            });
+              killAnimations.push({
+                pos: monsterPos,
+                sprite: new Sprite(
+                  'https://i.imgur.com/6TPUotY.png',
+                  [1800, 930],
+                  [215, 175],
+                  [0, 0],
+                  [190, 190],
+                  6,
+                  [7, 6, 5, 4, 3, 2, 1, 0],
+                  true
+                )
+              });
+              score += 3;
               break;
             case 'wyvern':
               killAnimations.push({
@@ -363,8 +379,11 @@ function checkCollisions(player, leftBullets, rightBullets, leftMonsters, rightM
                   true
                 )
               });
+              score += 1;
               break;
           }
+
+          document.getElementById('score').innerHTML = `Score: ${score}`;
           leftMonsters.splice(i, 1);
           i -= 1;
         }

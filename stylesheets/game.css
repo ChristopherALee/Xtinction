@@ -120,6 +120,22 @@ canvas {
   background-position: center;
 }
 
+.score-container {
+  display: flex;
+}
+
+.score-text {
+  
+}
+
+#score {
+  font-size: 30px;
+  color: yellow;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 .start-screen {
   width: 1200px;
   height: 700px;
