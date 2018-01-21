@@ -15,6 +15,15 @@ body {
   background-image: url('https://images3.alphacoders.com/686/686773.jpg');
   background-size: cover;
   background-position: center;
+
+}
+
+.black-overlay {
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  position: absolute;
+  opacity: 0.5;
 }
 
 .title {
@@ -40,6 +49,7 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  z-index: 1;
 }
 
 canvas {
@@ -68,4 +78,28 @@ p {
   font-family: Doom;
   font-size: 50px;
   text-shadow: -1px 0 red, 0 1px red, 1px 0 black, 0 -1px black;
+
+    animation:2s blinker linear infinite;
+   -webkit-animation:2s blinker linear infinite;
+   -moz-animation:2s blinker linear infinite;
+
+    color: black;
+   }
+
+   @-moz-keyframes blinker {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+    }
+
+   @-webkit-keyframes blinker {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+    }
+
+   @keyframes blinker {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
 }
