@@ -380,20 +380,16 @@ introSong.currentTime = 4;
 // window.onload = introSong.play();
 
 document.addEventListener('keydown', (e) => {
-  // press spacebar to start the game
   if (e.keyCode == 32) {
+    // press spacebar to start the game
     document.getElementById("intro-song").pause();
     document.getElementById("main-song").play();
 
     $(".start-screen").hide();
     $("#canvas").show();
     init();
-  }
-});
-
-document.addEventListener('keydown', (e) => {
-  // press enter to play again
-  if (e.keyCode == 13) {
+  } else if (e.keyCode == 13) {
+    // press enter to play again
     $(".gameover-overlay").hide();
     $(".gameover-screen").hide();
     reset();

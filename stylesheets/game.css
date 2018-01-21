@@ -114,7 +114,7 @@ h2 {
 
 canvas {
   display:block;
-  border:1px solid red;
+  border:1px solid black;
   background-image: url('https://media.giphy.com/media/K3yHR4ARBtNPq/giphy.gif');
   background-size: cover;
   background-position: center;
