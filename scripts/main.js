@@ -149,6 +149,7 @@ export const gameOver = () => {
 
 const reset = () => {
   gameTime = 0;
+  spawnRate = 100;
   willReset = false;
   leftBullets = [];
   rightBullets = [];
