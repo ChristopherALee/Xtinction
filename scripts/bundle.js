@@ -305,7 +305,7 @@ var gameOver = exports.gameOver = function gameOver() {
 
 var reset = function reset() {
   gameTime = 0;
-  spawnRate = 100;
+  spawnRate = 125;
   willReset = false;
   leftBullets = [];
   rightBullets = [];
@@ -347,7 +347,7 @@ var deadPlayer = function deadPlayer() {
 var gameTime = 0;
 var willReset = false;
 
-var spawnRate = 100;
+var spawnRate = 125;
 
 var leftBullets = [];
 var rightBullets = [];
@@ -367,7 +367,7 @@ function update(timeDifferential) {
   gameTime += timeDifferential;
 
   if (spawnRate < 0) {
-    spawnRate = 100;
+    spawnRate = 125;
   } else {
     spawnRate -= 1;
   }
