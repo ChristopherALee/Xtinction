@@ -540,11 +540,18 @@ document.addEventListener('keydown', function (e) {
   if (e.keyCode == 32) {
     // press spacebar to start the game
     document.getElementById("intro-song").pause();
-    document.getElementById("main-song").play();
 
     $(".start-screen").hide();
     $("#canvas").show();
     onGameScreen = true;
+
+    if (isIntroMuted) {
+      isMainMuted = true;
+      $('#mute')[0].innerHTML = '<i class="fas fa-volume-off fa-5x"></i>';
+    } else {
+      document.getElementById("main-song").play();
+    }
+
     init();
   } else if (e.keyCode == 13) {
     // press enter to play again
