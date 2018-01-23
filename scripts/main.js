@@ -199,7 +199,7 @@ const deadPlayer = () => {
 let gameTime = 0;
 let willReset = false;
 
-let spawnRate = 100;
+let spawnRate = 200;
 
 let leftBullets = [];
 let rightBullets = [];
