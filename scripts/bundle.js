@@ -305,7 +305,7 @@ var gameOver = exports.gameOver = function gameOver() {
 
 var reset = function reset() {
   gameTime = 0;
-  spawnRate = 200;
+  spawnRate = 100;
   willReset = false;
   leftBullets = [];
   rightBullets = [];
@@ -347,7 +347,7 @@ var deadPlayer = function deadPlayer() {
 var gameTime = 0;
 var willReset = false;
 
-var spawnRate = 200;
+var spawnRate = 100;
 
 var leftBullets = [];
 var rightBullets = [];
@@ -367,7 +367,7 @@ function update(timeDifferential) {
   gameTime += timeDifferential;
 
   if (spawnRate < 0) {
-    spawnRate = 200;
+    spawnRate = 100;
   } else {
     spawnRate -= 1;
   }
@@ -1047,7 +1047,7 @@ var spawnRightMonsters = exports.spawnRightMonsters = function spawnRightMonster
       type: 'taurospear',
       pos: [canvas.width, Math.random() * (canvas.height - 175)],
       sprite: new _sprite2.default('https://i.imgur.com/jHYJaMs.png', [5, 175], [215, 175], [0, 0], [190, 190], 6, [0, 1, 2], false),
-      speed: 400,
+      speed: 300,
       direction: direction[Math.floor(Math.random() * direction.length)]
     });
   }
@@ -1059,7 +1059,7 @@ var spawnRightMonsters = exports.spawnRightMonsters = function spawnRightMonster
       type: 'wyvern',
       pos: [canvas.width, Math.random() * (canvas.height - 175)],
       sprite: new _sprite2.default('https://i.imgur.com/MAUkqfk.png', [5, 0], [175, 175], [0, 0], [170, 170], 8, [0, 1, 2, 3, 4, 5, 4, 3, 2, 1], false),
-      speed: 300,
+      speed: 250,
       direction: direction[Math.floor(Math.random() * direction.length)]
     });
   }
@@ -1102,7 +1102,7 @@ var spawnLeftMonsters = exports.spawnLeftMonsters = function spawnLeftMonsters(g
       type: 'taurospear',
       pos: [0 - 215, Math.random() * (700 - 175)],
       sprite: new _sprite2.default('https://i.imgur.com/6TPUotY.png', [2175, 175], [215, 175], [0, 0], [190, 190], 6, [2, 1, 0], false),
-      speed: 400,
+      speed: 300,
       direction: direction[Math.floor(Math.random() * direction.length)]
     });
   }
@@ -1114,7 +1114,7 @@ var spawnLeftMonsters = exports.spawnLeftMonsters = function spawnLeftMonsters(g
       type: 'wyvern',
       pos: [0 - 175, Math.random() * (canvas.height - 175)],
       sprite: new _sprite2.default('https://i.imgur.com/EdvKlUj.png', [1817, 0], [175, 175], [0, 0], [170, 170], 8, [0, 1, 2, 3, 4, 5, 4, 3, 2, 1], false),
-      speed: 300,
+      speed: 250,
       direction: direction[Math.floor(Math.random() * direction.length)]
     });
   }
