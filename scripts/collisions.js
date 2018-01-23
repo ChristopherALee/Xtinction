@@ -33,7 +33,7 @@ function checkCollisions(player, willReset, leftBullets, rightBullets, leftMonst
 
     // player death
     if (isCollision(
-      enemyPos[0], enemyPos[1] - 100, enemySize[0], enemySize[1] + 100,
+      enemyPos[0], enemyPos[1] - 100, enemySize[0], enemySize[1],
       player.pos[0], player.pos[1], player.sprite.srcSize[0], player.sprite.srcSize[1]
     )) {
       gameOver();
