@@ -391,6 +391,7 @@ function renderEntity(entity) {
 let introSong = document.getElementById("intro-song");
 introSong.currentTime = 4;
 window.onload = introSong.play();
+let onGameScreen = false;
 
 document.addEventListener('keydown', (e) => {
   if (e.keyCode == 32) {
@@ -400,6 +401,7 @@ document.addEventListener('keydown', (e) => {
 
     $(".start-screen").hide();
     $("#canvas").show();
+    onGameScreen = true;
     init();
   } else if (e.keyCode == 13) {
     // press enter to play again
@@ -407,5 +409,27 @@ document.addEventListener('keydown', (e) => {
     $(".gameover-screen").hide();
     reset();
     willReset = true;
+  }
+});
+
+let isIntroMuted = false;
+let isMainMuted = false;
+$('#mute')[0].addEventListener('click', () => {
+  if (onGameScreen) {
+    if (isMainMuted) {
+      document.getElementById("main-song").play();
+      isMainMuted = false;
+    } else {
+      document.getElementById("main-song").pause();
+      isMainMuted = true;
+    }
+  } else {
+    if (isIntroMuted) {
+      document.getElementById("intro-song").play();
+      isIntroMuted = false;
+    } else {
+      document.getElementById("intro-song").pause();
+      isIntroMuted = true;
+    }
   }
 });

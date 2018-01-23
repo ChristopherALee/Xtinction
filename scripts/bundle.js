@@ -305,6 +305,7 @@ var gameOver = exports.gameOver = function gameOver() {
 
 var reset = function reset() {
   gameTime = 0;
+  spawnRate = 200;
   willReset = false;
   leftBullets = [];
   rightBullets = [];
@@ -346,7 +347,7 @@ var deadPlayer = function deadPlayer() {
 var gameTime = 0;
 var willReset = false;
 
-var spawnRate = 100;
+var spawnRate = 200;
 
 var leftBullets = [];
 var rightBullets = [];
@@ -366,7 +367,7 @@ function update(timeDifferential) {
   gameTime += timeDifferential;
 
   if (spawnRate < 0) {
-    spawnRate = 100;
+    spawnRate = 200;
   } else {
     spawnRate -= 1;
   }
@@ -533,6 +534,7 @@ function renderEntity(entity) {
 var introSong = document.getElementById("intro-song");
 introSong.currentTime = 4;
 window.onload = introSong.play();
+var onGameScreen = false;
 
 document.addEventListener('keydown', function (e) {
   if (e.keyCode == 32) {
@@ -542,6 +544,7 @@ document.addEventListener('keydown', function (e) {
 
     $(".start-screen").hide();
     $("#canvas").show();
+    onGameScreen = true;
     init();
   } else if (e.keyCode == 13) {
     // press enter to play again
@@ -549,6 +552,28 @@ document.addEventListener('keydown', function (e) {
     $(".gameover-screen").hide();
     reset();
     willReset = true;
+  }
+});
+
+var isIntroMuted = false;
+var isMainMuted = false;
+$('#mute')[0].addEventListener('click', function () {
+  if (onGameScreen) {
+    if (isMainMuted) {
+      document.getElementById("main-song").play();
+      isMainMuted = false;
+    } else {
+      document.getElementById("main-song").pause();
+      isMainMuted = true;
+    }
+  } else {
+    if (isIntroMuted) {
+      document.getElementById("intro-song").play();
+      isIntroMuted = false;
+    } else {
+      document.getElementById("intro-song").pause();
+      isIntroMuted = true;
+    }
   }
 });
 
