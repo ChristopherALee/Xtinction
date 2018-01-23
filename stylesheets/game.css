@@ -102,6 +102,15 @@ h2 {
   justify-content: center;
 }
 
+.fa-address-card {
+  margin-bottom: 20px;
+}
+
+.fa-address-card:hover {
+  color: red;
+  cursor: pointer;
+}
+
 .fa-github {
   margin-bottom: 20px;
 }
