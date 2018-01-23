@@ -562,17 +562,21 @@ $('#mute')[0].addEventListener('click', function () {
     if (isMainMuted) {
       document.getElementById("main-song").play();
       isMainMuted = false;
+      $('#mute')[0].innerHTML = '<i class="fas fa-volume-up fa-5x"></i>';
     } else {
       document.getElementById("main-song").pause();
       isMainMuted = true;
+      $('#mute')[0].innerHTML = '<i class="fas fa-volume-off fa-5x"></i>';
     }
   } else {
     if (isIntroMuted) {
       document.getElementById("intro-song").play();
       isIntroMuted = false;
+      $('#mute')[0].innerHTML = '<i class="fas fa-volume-up fa-5x"></i>';
     } else {
       document.getElementById("intro-song").pause();
       isIntroMuted = true;
+      $('#mute')[0].innerHTML = '<i class="fas fa-volume-off fa-5x"></i>';
     }
   }
 });
