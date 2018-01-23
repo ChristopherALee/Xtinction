@@ -149,7 +149,7 @@ export const gameOver = () => {
 
 const reset = () => {
   gameTime = 0;
-  spawnRate = 100;
+  spawnRate = 200;
   willReset = false;
   leftBullets = [];
   rightBullets = [];
@@ -219,7 +219,7 @@ function update(timeDifferential) {
   gameTime += timeDifferential;
 
   if (spawnRate < 0) {
-    spawnRate = 100;
+    spawnRate = 200;
   } else {
     spawnRate -= 1;
   }
