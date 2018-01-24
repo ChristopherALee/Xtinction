@@ -1,4 +1,6 @@
+<div style="text-align: center;">
 ![logo](./screenshots/xtinction-title.png)
+</div>
 
 ## Background
 Xtinction is a survival shooter game built with JavaScript while using canvas where the player defends themselves from waves of hostile monsters.
@@ -26,7 +28,9 @@ function render() {
   killAnimations.forEach( (kill) => { renderEntity(kill); });
 }
 ```
+<div style="text-align: center;">
 ![demo](./screenshots/xtinction-demo.gif)
+</div>
 
 ## Collision Detection
 ``` javascript
