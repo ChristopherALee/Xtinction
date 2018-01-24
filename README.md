@@ -1,4 +1,4 @@
-<div style="text-align: center;">
+<div style="align: center;">
 <img src="./screenshots/xtinction-title.png"></img>
 </div>
 <!-- ![logo](./screenshots/xtinction-title.png) -->
@@ -29,7 +29,7 @@ function render() {
   killAnimations.forEach( (kill) => { renderEntity(kill); });
 }
 ```
-<div style="text-align: center;">
+<div style="align: center;">
   <img src="./screenshots/xtinction-demo.gif"></img>
 </div>
 <!-- ![demo](./screenshots/xtinction-demo.gif) -->
