@@ -173,6 +173,7 @@ function main() {
 }
 
 function init() {
+  document.removeEventListener("keydown", startGame);
   lastTime = Date.now();
   main();
 }
@@ -367,8 +368,10 @@ function updateAll(timeDifferential) {
 function render() {
   if (isGameOver) {
     renderEntity(deadPlayer());
+    document.addEventListener('keydown', gameOverOverlay);
   } else {
     renderEntity(Player.duckPlayer);
+    document.removeEventListener('keydown', gameOverOverlay);
   }
 
   leftBullets.forEach( (bullet) => renderEntity(bullet));
@@ -393,7 +396,7 @@ introSong.currentTime = 4;
 window.onload = introSong.play();
 let onGameScreen = false;
 
-document.addEventListener('keydown', (e) => {
+const startGame = (e) => {
   if (e.keyCode == 32) {
     // press spacebar to start the game
     document.getElementById("intro-song").pause();
@@ -410,15 +413,22 @@ document.addEventListener('keydown', (e) => {
     }
 
     init();
-  } else if (e.keyCode == 13) {
+  }
+};
+
+const gameOverOverlay = (e) => {
+  if (e.keyCode == 13) {
     // press enter to play again
     $(".gameover-overlay").hide();
     $(".gameover-screen").hide();
     reset();
     willReset = true;
   }
-});
+};
 
+document.addEventListener('keydown', startGame);
+
+// toggle music
 let isIntroMuted = false;
 let isMainMuted = false;
 $('#mute')[0].addEventListener('click', () => {
