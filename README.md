@@ -3,7 +3,7 @@
 </div>
 
 ## Background
-Xtinction is a survival shooter game built with JavaScript while using canvas where the player defends themselves from waves of hostile monsters.
+Xtinction is a survival shooter game built with JavaScript and Canvas where the player defends themselves from waves of hostile monsters.
 
 [Live-Demo](http://www.christopheradamlee.com/Xtinction/)
 
