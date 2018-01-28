@@ -3,7 +3,7 @@ var webpack = require("webpack");
 
 module.exports = {
   context: __dirname,
-  entry: "./scripts/refactor.js",
+  entry: "./scripts/game.js",
   output: {
     path: path.resolve(__dirname, 'scripts'),
     filename: "bundle.js"

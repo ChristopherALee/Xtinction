@@ -51,16 +51,6 @@ class Game {
     );
   }
 
-  gameOverOverlay(e) {
-    if (e.keyCode == 13) {
-      // press enter to play again
-      $(".gameover-overlay").hide();
-      $(".gameover-screen").hide();
-      this.reset();
-      this.willReset = true;
-    }
-  }
-
   handleInput(timeDifferential) {
     // handles player movement
     if (window.input.pressed('DOWN') && !this.isGameOver) {
@@ -330,10 +320,10 @@ class Game {
   render() {
     if (this.isGameOver) {
       this.renderEntity(this.deadPlayer());
-      document.addEventListener('keydown', this.gameOverOverlay.bind(this));
+      document.addEventListener('keydown', gameOverOverlay);
     } else {
       this.renderEntity(this.player);
-      document.removeEventListener('keydown', this.gameOverOverlay.bind(this));
+      document.removeEventListener('keydown', gameOverOverlay);
     }
 
     this.leftBullets.forEach( (bullet) => this.renderEntity(bullet));
@@ -408,6 +398,7 @@ let onGameScreen = false;
 let isIntroMuted = false;
 let isMainMuted = false;
 
+const newGame = new Game();
 const startGame = (e) => {
   if (e.keyCode == 32) {
     // press spacebar to start the game
@@ -424,11 +415,20 @@ const startGame = (e) => {
       document.getElementById("main-song").play();
     }
 
-    const newGame = new Game();
     newGame.init();
   }
 };
 document.addEventListener('keydown', startGame);
+
+const gameOverOverlay = (e) => {
+  if (e.keyCode == 13) {
+    // press enter to play again
+    $(".gameover-overlay").hide();
+    $(".gameover-screen").hide();
+    newGame.reset();
+    newGame.willReset = true;
+  }
+};
 
 // // toggle music
 $('#mute')[0].addEventListener('click', () => {
