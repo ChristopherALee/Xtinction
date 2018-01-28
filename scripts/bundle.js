@@ -713,81 +713,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var introSong = document.getElementById("intro-song");
-introSong.currentTime = 4;
-window.onload = introSong.play();
-var onGameScreen = false;
-var isIntroMuted = false;
-var isMainMuted = false;
-
-var startGame = function startGame(e) {
-  if (e.keyCode == 32) {
-    // press spacebar to start the game
-    document.getElementById("intro-song").pause();
-
-    $(".start-screen").hide();
-    $("#canvas").show();
-    onGameScreen = true;
-
-    if (isIntroMuted) {
-      isMainMuted = true;
-      $('#mute')[0].innerHTML = '<i class="fas fa-volume-off fa-5x"></i>';
-    } else {
-      document.getElementById("main-song").play();
-    }
-
-    var newGame = new Game();
-    newGame.init();
-  }
-};
-document.addEventListener('keydown', startGame);
-
-var activeKeys = {};
-function checkKeyPress() {
-  function setKey(e, status) {
-    var keyCode = e.keyCode;
-    var key = void 0;
-
-    switch (keyCode) {
-      case 87:
-        key = 'UP';
-        activeKeys[key] = status;
-        break;
-      case 83:
-        key = 'DOWN';
-        activeKeys[key] = status;
-        break;
-      case 65:
-        key = 'LEFT';
-        activeKeys[key] = status;
-        break;
-      case 68:
-        key = 'RIGHT';
-        activeKeys[key] = status;
-        break;
-      case 75:
-        key = 'SHOOT';
-        activeKeys[key] = status;
-        break;
-    }
-  }
-
-  document.addEventListener('keydown', function (e) {
-    setKey(e, true);
-  });
-
-  document.addEventListener('keyup', function (e) {
-    setKey(e, false);
-  });
-
-  window.input = {
-    pressed: function pressed(key) {
-      return activeKeys[key];
-    }
-  };
-}
-checkKeyPress();
-
 var Game = function () {
   function Game() {
     _classCallCheck(this, Game);
@@ -1137,6 +1062,109 @@ var Game = function () {
 
   return Game;
 }();
+
+// UI and Event Listeners
+
+
+var activeKeys = {};
+function checkKeyPress() {
+  function setKey(e, status) {
+    var keyCode = e.keyCode;
+    var key = void 0;
+
+    switch (keyCode) {
+      case 87:
+        key = 'UP';
+        activeKeys[key] = status;
+        break;
+      case 83:
+        key = 'DOWN';
+        activeKeys[key] = status;
+        break;
+      case 65:
+        key = 'LEFT';
+        activeKeys[key] = status;
+        break;
+      case 68:
+        key = 'RIGHT';
+        activeKeys[key] = status;
+        break;
+      case 75:
+        key = 'SHOOT';
+        activeKeys[key] = status;
+        break;
+    }
+  }
+
+  document.addEventListener('keydown', function (e) {
+    setKey(e, true);
+  });
+
+  document.addEventListener('keyup', function (e) {
+    setKey(e, false);
+  });
+
+  window.input = {
+    pressed: function pressed(key) {
+      return activeKeys[key];
+    }
+  };
+}
+checkKeyPress();
+
+var introSong = document.getElementById("intro-song");
+introSong.currentTime = 4;
+window.onload = introSong.play();
+var onGameScreen = false;
+var isIntroMuted = false;
+var isMainMuted = false;
+
+var startGame = function startGame(e) {
+  if (e.keyCode == 32) {
+    // press spacebar to start the game
+    document.getElementById("intro-song").pause();
+
+    $(".start-screen").hide();
+    $("#canvas").show();
+    onGameScreen = true;
+
+    if (isIntroMuted) {
+      isMainMuted = true;
+      $('#mute')[0].innerHTML = '<i class="fas fa-volume-off fa-5x"></i>';
+    } else {
+      document.getElementById("main-song").play();
+    }
+
+    var newGame = new Game();
+    newGame.init();
+  }
+};
+document.addEventListener('keydown', startGame);
+
+// // toggle music
+$('#mute')[0].addEventListener('click', function () {
+  if (onGameScreen) {
+    if (isMainMuted) {
+      document.getElementById("main-song").play();
+      isMainMuted = false;
+      $('#mute')[0].innerHTML = '<i class="fas fa-volume-up fa-5x"></i>';
+    } else {
+      document.getElementById("main-song").pause();
+      isMainMuted = true;
+      $('#mute')[0].innerHTML = '<i class="fas fa-volume-off fa-5x"></i>';
+    }
+  } else {
+    if (isIntroMuted) {
+      document.getElementById("intro-song").play();
+      isIntroMuted = false;
+      $('#mute')[0].innerHTML = '<i class="fas fa-volume-up fa-5x"></i>';
+    } else {
+      document.getElementById("intro-song").pause();
+      isIntroMuted = true;
+      $('#mute')[0].innerHTML = '<i class="fas fa-volume-off fa-5x"></i>';
+    }
+  }
+});
 
 /***/ }),
 /* 6 */
@@ -1603,33 +1631,9 @@ var Game = function () {
 
 /***/ }),
 /* 7 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var startGame = exports.startGame = function startGame(e) {
-  if (e.keyCode == 32) {
-    // press spacebar to start the game
-    document.getElementById("intro-song").pause();
-
-    $(".start-screen").hide();
-    $("#canvas").show();
-    undefined.onGameScreen = true;
-
-    if (undefined.isIntroMuted) {
-      undefined.isMainMuted = true;
-      $('#mute')[0].innerHTML = '<i class="fas fa-volume-off fa-5x"></i>';
-    } else {
-      document.getElementById("main-song").play();
-    }
-
-    undefined.init();
-  }
-};
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/ChristopherAdamLee/Desktop/Coding/AppAcademy/Job Search Curriculum/Javascript Project/Xtinction/scripts/ui.js'\n    at Error (native)");
 
 /***/ })
 /******/ ]);

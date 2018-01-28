@@ -5,81 +5,6 @@ import checkCollisions from './collisions.js';
 import * as Monsters from './enemies.js';
 import * as Ui from './ui.js';
 
-let introSong = document.getElementById("intro-song");
-introSong.currentTime = 4;
-window.onload = introSong.play();
-let onGameScreen = false;
-let isIntroMuted = false;
-let isMainMuted = false;
-
-const startGame = (e) => {
-  if (e.keyCode == 32) {
-    // press spacebar to start the game
-    document.getElementById("intro-song").pause();
-
-    $(".start-screen").hide();
-    $("#canvas").show();
-    onGameScreen = true;
-
-    if (isIntroMuted) {
-      isMainMuted = true;
-      $('#mute')[0].innerHTML = '<i class="fas fa-volume-off fa-5x"></i>';
-    } else {
-      document.getElementById("main-song").play();
-    }
-
-    const newGame = new Game();
-    newGame.init();
-  }
-};
-document.addEventListener('keydown', startGame);
-
-let activeKeys = {};
-function checkKeyPress() {
-  function setKey(e, status) {
-    let keyCode = e.keyCode;
-    let key;
-
-    switch (keyCode) {
-      case 87:
-        key = 'UP';
-        activeKeys[key] = status;
-        break;
-      case 83:
-        key = 'DOWN';
-        activeKeys[key] = status;
-        break;
-      case 65:
-        key = 'LEFT';
-        activeKeys[key] = status;
-        break;
-      case 68:
-        key = 'RIGHT';
-        activeKeys[key] = status;
-        break;
-      case 75:
-        key = 'SHOOT';
-        activeKeys[key] = status;
-        break;
-    }
-  }
-
-  document.addEventListener('keydown', (e) => {
-    setKey(e, true);
-  });
-
-  document.addEventListener('keyup', (e) => {
-    setKey(e, false);
-  });
-
-  window.input = {
-    pressed: (key) => {
-      return activeKeys[key];
-    }
-  };
-}
-checkKeyPress();
-
 class Game {
   constructor() {
     this.canvas = document.getElementById('canvas');
@@ -431,3 +356,104 @@ class Game {
     this.ctx.restore();
   }
 }
+
+// UI and Event Listeners
+let activeKeys = {};
+function checkKeyPress() {
+  function setKey(e, status) {
+    let keyCode = e.keyCode;
+    let key;
+
+    switch (keyCode) {
+      case 87:
+        key = 'UP';
+        activeKeys[key] = status;
+        break;
+      case 83:
+        key = 'DOWN';
+        activeKeys[key] = status;
+        break;
+      case 65:
+        key = 'LEFT';
+        activeKeys[key] = status;
+        break;
+      case 68:
+        key = 'RIGHT';
+        activeKeys[key] = status;
+        break;
+      case 75:
+        key = 'SHOOT';
+        activeKeys[key] = status;
+        break;
+    }
+  }
+
+  document.addEventListener('keydown', (e) => {
+    setKey(e, true);
+  });
+
+  document.addEventListener('keyup', (e) => {
+    setKey(e, false);
+  });
+
+  window.input = {
+    pressed: (key) => {
+      return activeKeys[key];
+    }
+  };
+}
+checkKeyPress();
+
+let introSong = document.getElementById("intro-song");
+introSong.currentTime = 4;
+window.onload = introSong.play();
+let onGameScreen = false;
+let isIntroMuted = false;
+let isMainMuted = false;
+
+const startGame = (e) => {
+  if (e.keyCode == 32) {
+    // press spacebar to start the game
+    document.getElementById("intro-song").pause();
+
+    $(".start-screen").hide();
+    $("#canvas").show();
+    onGameScreen = true;
+
+    if (isIntroMuted) {
+      isMainMuted = true;
+      $('#mute')[0].innerHTML = '<i class="fas fa-volume-off fa-5x"></i>';
+    } else {
+      document.getElementById("main-song").play();
+    }
+
+    const newGame = new Game();
+    newGame.init();
+  }
+};
+document.addEventListener('keydown', startGame);
+
+// // toggle music
+$('#mute')[0].addEventListener('click', () => {
+  if (onGameScreen) {
+    if (isMainMuted) {
+      document.getElementById("main-song").play();
+      isMainMuted = false;
+      $('#mute')[0].innerHTML = '<i class="fas fa-volume-up fa-5x"></i>';
+    } else {
+      document.getElementById("main-song").pause();
+      isMainMuted = true;
+      $('#mute')[0].innerHTML = '<i class="fas fa-volume-off fa-5x"></i>';
+    }
+  } else {
+    if (isIntroMuted) {
+      document.getElementById("intro-song").play();
+      isIntroMuted = false;
+      $('#mute')[0].innerHTML = '<i class="fas fa-volume-up fa-5x"></i>';
+    } else {
+      document.getElementById("intro-song").pause();
+      isIntroMuted = true;
+      $('#mute')[0].innerHTML = '<i class="fas fa-volume-off fa-5x"></i>';
+    }
+  }
+});
