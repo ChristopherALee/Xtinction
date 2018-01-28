@@ -46,6 +46,7 @@ body {
   display: flex;
   justify-content: center;
   font-size: 100px;
+  user-select: none;
 }
 
 h1 {
@@ -79,6 +80,7 @@ h2 {
   align-items: center;
   padding: 20px 5px;
   border: 1px solid black;
+  user-select: none;
 }
 
 .controls-title {
@@ -92,6 +94,10 @@ h2 {
   color: red;
   font-family: 'Press Start 2P', cursive;
   margin-bottom: 5px;
+}
+
+#mute {
+  cursor: pointer;
 }
 
 .game-directions {
@@ -252,6 +258,7 @@ canvas {
    -moz-animation:2s blinker linear infinite;
 
     color: black;
+    user-select: none;
    }
 
    @-moz-keyframes blinker {
