@@ -14,7 +14,7 @@ function isCollision(
 
 let score = 0;
 
-function checkCollisions(player, willReset, leftBullets, rightBullets, leftMonsters, rightMonsters, hitAnimations, killAnimations) {
+function checkCollisions(player, willReset, leftBullets, rightBullets, leftMonsters, rightMonsters, hitAnimations, killAnimations, gameOver) {
 
   if (
     willReset

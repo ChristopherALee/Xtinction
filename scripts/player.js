@@ -59,3 +59,18 @@ export const duckPlayer = {
   speed: 388,
   direction: 'RIGHT'
 };
+
+export const deadPlayer = {
+    pos: duckPlayer.pos,
+    sprite: new Sprite (
+      'https://i.imgur.com/bxHEJ6i.png',
+      [15, 350],
+      [60, 60],
+      [0, 0],
+      [75, 75],
+      1,
+      [0]
+    ),
+    speed: 388,
+    direction: 'RIGHT'
+};
