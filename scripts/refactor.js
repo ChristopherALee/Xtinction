@@ -3,7 +3,6 @@ import * as Player from './player.js';
 import * as Bullets from './bullet.js';
 import checkCollisions from './collisions.js';
 import * as Monsters from './enemies.js';
-import * as Ui from './ui.js';
 
 class Game {
   constructor() {
@@ -22,8 +21,6 @@ class Game {
     this.rightMonsters = [];
     this.hitAnimations = [];
     this.killAnimations = [];
-    this.introSong = document.getElementById("intro-song");
-    this.introSong.currentTime = 4;
     this.onGameScreen = false;
     this.score = 0;
   }

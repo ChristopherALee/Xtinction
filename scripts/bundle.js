@@ -703,10 +703,6 @@ var _enemies = __webpack_require__(4);
 
 var Monsters = _interopRequireWildcard(_enemies);
 
-var _ui = __webpack_require__(7);
-
-var Ui = _interopRequireWildcard(_ui);
-
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -732,8 +728,6 @@ var Game = function () {
     this.rightMonsters = [];
     this.hitAnimations = [];
     this.killAnimations = [];
-    this.introSong = document.getElementById("intro-song");
-    this.introSong.currentTime = 4;
     this.onGameScreen = false;
     this.score = 0;
   }
@@ -1628,12 +1622,6 @@ $('#mute')[0].addEventListener('click', function () {
 //   }
 // });
 
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/ChristopherAdamLee/Desktop/Coding/AppAcademy/Job Search Curriculum/Javascript Project/Xtinction/scripts/ui.js'\n    at Error (native)");
 
 /***/ })
 /******/ ]);
