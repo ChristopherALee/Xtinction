@@ -123,6 +123,20 @@ h2 {
   color: red;
 }
 
+.cal-logo {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 20px;
+  background-image: url('../screenshots/CAL_Logo_url.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.cal-logo:hover {
+  background-image: url('../screenshots/CAL_Logo_red.png');
+}
+
 .fa-address-card {
   margin-bottom: 20px;
 }
