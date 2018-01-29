@@ -7,7 +7,7 @@ Xtinction is a survival shooter game built with JavaScript and Canvas where the 
 
 [Live-Demo](http://www.christopheradamlee.com/Xtinction/)
 
-![starting-screen](./screenshots/xtinction-ss.png)
+![starting-screen](./screenshots/xtinction-updated-ss.png)
 
 ## Renders multiple objects in a single animation frame
 The game re-renders Canvas using `requestAnimationFrame`. In the `render()` function, it re-renders each object in the game (player, monsters, and bullets) where-ever their position is on the canvas. It also checks if the game is over to render a death animation for the player's character, triggering a game-over screen overlay via an event listener.
