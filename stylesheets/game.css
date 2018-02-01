@@ -217,25 +217,46 @@ canvas {
 
 .gameover-text {
   font-size: 130px;
+  margin: 0;
+  padding-top: 50px;
 }
 
 .high-score-header {
-  color: white;
+  color: yellow;
   width: 50%;
   display: flex;
   justify-content: center;
   font-family: Doom;
-  color: red;
-  font-size: 50px;
+  font-size: 60px;
   margin: 0;
+  text-shadow: -1px 0 red, 0 1px red, 1px 0 black, 0 -1px black;
+}
+
+#high-scores {
+  font-family: 'Press Start 2P', cursive;
+}
+
+#high-scores > ul > li {
+  margin-bottom: 10px;
 }
 
 .high-score-list {
   color: white;
 }
 
+.high-score-input-container {
+  width: 200px;
+}
+
+.high-score-input {
+  width: 100%;
+  font-family: 'Press Start 2P', cursive;
+  outline: none;
+  padding: 3px;
+}
+
 .play-again {
-  padding-bottom: 75px;
+  padding-top: 35px;
   font-family: Doom;
   font-size: 80px;
   text-shadow: -5px 0 black, 0 2px black, 2px 0 black, 0 -1px black;

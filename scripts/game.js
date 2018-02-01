@@ -27,6 +27,7 @@ class Game {
     this.database = Database;
     this.fetchScores();
     this.highScores = [];
+    this.inputName = true;
   }
 
   deadPlayer() {
@@ -167,7 +168,7 @@ class Game {
       return (
         b.score - a.score
       );
-    }).slice(0, 11);
+    }).slice(0, 10);
     // debugger
 
     this.displayHighScores();
@@ -186,9 +187,9 @@ class Game {
 
   gameOver(gameScore) {
     this.score = gameScore;
-    this.inputName = true;
-    if (this.inputName && (this.highScores.length < 11 || this.highScores.some((score) => score.score < gameScore )) && !$('.high-score-input').length) {
-      $(".high-score-input-container").append("<input class='high-score-input' type='text'></input>");
+
+    if (this.inputName && (this.highScores.length < 10 || this.highScores.some((score) => score.score < gameScore )) && !$('.high-score-input').length) {
+      $(".high-score-input-container").append("<input class='high-score-input' type='text' placeholder='Enter Your Name...'></input>");
 
       $(".high-score-input")[0].addEventListener('keydown', this.addScore.bind(this));
     } else if (!$('.high-score-list')[0].children.length) {
@@ -214,6 +215,7 @@ class Game {
     this.killAnimations = [];
     this.isGameOver = false;
     this.player.pos = [550, 350];
+    this.inputName = true;
   }
 
   init() {

@@ -14255,6 +14255,7 @@ var Game = function () {
     this.database = Database;
     this.fetchScores();
     this.highScores = [];
+    this.inputName = true;
   }
 
   _createClass(Game, [{
@@ -14382,7 +14383,7 @@ var Game = function () {
     value: function sortScores() {
       this.highScores = this.highScores.sort(function (a, b) {
         return b.score - a.score;
-      }).slice(0, 11);
+      }).slice(0, 10);
       // debugger
 
       this.displayHighScores();
@@ -14403,11 +14404,11 @@ var Game = function () {
     key: 'gameOver',
     value: function gameOver(gameScore) {
       this.score = gameScore;
-      this.inputName = true;
-      if (this.inputName && (this.highScores.length < 11 || this.highScores.some(function (score) {
+
+      if (this.inputName && (this.highScores.length < 10 || this.highScores.some(function (score) {
         return score.score < gameScore;
       })) && !$('.high-score-input').length) {
-        $(".high-score-input-container").append("<input class='high-score-input' type='text'></input>");
+        $(".high-score-input-container").append("<input class='high-score-input' type='text' placeholder='Enter Your Name...'></input>");
 
         $(".high-score-input")[0].addEventListener('keydown', this.addScore.bind(this));
       } else if (!$('.high-score-list')[0].children.length) {
@@ -14434,6 +14435,7 @@ var Game = function () {
       this.killAnimations = [];
       this.isGameOver = false;
       this.player.pos = [550, 350];
+      this.inputName = true;
     }
   }, {
     key: 'init',
