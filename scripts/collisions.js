@@ -36,7 +36,7 @@ function checkCollisions(player, willReset, leftBullets, rightBullets, leftMonst
       enemyPos[0], enemyPos[1] - 73, enemySize[0], enemySize[1],
       player.pos[0], player.pos[1], player.sprite.srcSize[0], player.sprite.srcSize[1]
     )) {
-      gameOver();
+      gameOver(score);
     }
 
     for (let j = 0; j < rightBullets.length; j++) {
@@ -222,7 +222,7 @@ function checkCollisions(player, willReset, leftBullets, rightBullets, leftMonst
       monsterPos[0], monsterPos[1] - 73, monsterSize[0], monsterSize[1],
       player.pos[0], player.pos[1], player.sprite.srcSize[0], player.sprite.srcSize[1]
     )) {
-      gameOver();
+      gameOver(score);
     }
 
     for (let j = 0; j < leftBullets.length; j++) {

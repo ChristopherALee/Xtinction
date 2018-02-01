@@ -70,7 +70,6 @@ h2 {
   z-index: 1;
 }
 
-
 .controls {
   width: 200px;
   background-color: #00000080;
@@ -218,6 +217,21 @@ canvas {
 
 .gameover-text {
   font-size: 130px;
+}
+
+.high-score-header {
+  color: white;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  font-family: Doom;
+  color: red;
+  font-size: 50px;
+  margin: 0;
+}
+
+.high-score-list {
+  color: white;
 }
 
 .play-again {

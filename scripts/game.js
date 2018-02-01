@@ -3,6 +3,7 @@ import * as Player from './player.js';
 import * as Bullets from './bullet.js';
 import checkCollisions from './collisions.js';
 import * as Monsters from './enemies.js';
+const Database = require('./database');
 
 class Game {
   constructor() {
@@ -23,6 +24,9 @@ class Game {
     this.killAnimations = [];
     this.onGameScreen = false;
     this.score = 0;
+    this.database = Database;
+    this.fetchScores();
+    this.highScores = [];
   }
 
   deadPlayer() {
@@ -129,7 +133,70 @@ class Game {
      }
   }
 
-  gameOver() {
+  fetchScores() {
+    let fetchScoreResults = this.database.ref("scores");
+    fetchScoreResults.on('value', (scores) => {
+      scores.forEach( function(score) {
+        this.highScores.push(score.val());
+      }.bind(this));
+    }).bind(this);
+  }
+
+  addScore(e) {
+    // debugger
+    if (e.keyCode == 13) {
+      let name = $('.high-score-input')[0].value;
+      let score = this.score;
+
+      this.database.ref("scores").push({
+        name: name,
+        score: score
+      });
+
+      this.inputName = false;
+      $(".high-score-input-container").children("input").remove();
+      this.highScores = [];
+      this.fetchScores();
+      this.sortScores();
+    }
+
+  }
+
+  sortScores() {
+    this.highScores = this.highScores.sort( (a, b) => {
+      return (
+        b.score - a.score
+      );
+    }).slice(0, 11);
+    // debugger
+
+    this.displayHighScores();
+  }
+
+  displayHighScores() {
+    let highScores = $('.high-score-list').empty();
+    // debugger
+    this.highScores.forEach( (score) => {
+      // debugger
+      let nodeLi = document.createElement("LI");
+      nodeLi.append(`${score.name}: ${score.score}`);
+      highScores.append(nodeLi);
+    });
+  }
+
+  gameOver(gameScore) {
+    this.score = gameScore;
+    this.inputName = true;
+    if (this.inputName && (this.highScores.length < 11 || this.highScores.some((score) => score.score < gameScore )) && !$('.high-score-input').length) {
+      $(".high-score-input-container").append("<input class='high-score-input' type='text'></input>");
+
+      $(".high-score-input")[0].addEventListener('keydown', this.addScore.bind(this));
+    } else if (!$('.high-score-list')[0].children.length) {
+      this.highScores = [];
+      this.fetchScores();
+      this.sortScores();
+    }
+
     $(".gameover-overlay").show();
     $(".gameover-screen").show();
     this.isGameOver = true;
@@ -421,8 +488,8 @@ const startGame = (e) => {
 document.addEventListener('keydown', startGame);
 
 const gameOverOverlay = (e) => {
-  if (e.keyCode == 13) {
-    // press enter to play again
+  if (e.keyCode == 32) {
+    // press spacebar to play again
     $(".gameover-overlay").hide();
     $(".gameover-screen").hide();
     newGame.reset();
