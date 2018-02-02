@@ -1,4 +1,8 @@
 /* reset start */
+body {
+  user-select: none;
+}
+
 p {
   margin: 0;
 }
@@ -234,6 +238,11 @@ canvas {
 
 #high-scores {
   font-family: 'Press Start 2P', cursive;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 #high-scores > ul > li {
@@ -245,14 +254,18 @@ canvas {
 }
 
 .high-score-input-container {
-  width: 200px;
+  background: transparent;
 }
 
 .high-score-input {
-  width: 100%;
+  background: 0;
+  border-radius: 5px;
+  width: 82%;
   font-family: 'Press Start 2P', cursive;
   outline: none;
-  padding: 3px;
+  padding: 15px;
+  color: white;
+  border: 1px solid red;
 }
 
 .play-again {
