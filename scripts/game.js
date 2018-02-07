@@ -144,7 +144,6 @@ class Game {
   }
 
   addScore(e) {
-    // debugger
     if (e.keyCode == 13) {
       let name = $('.high-score-input')[0].value;
       let score = this.score;
@@ -160,7 +159,6 @@ class Game {
       this.fetchScores();
       this.sortScores();
     }
-
   }
 
   sortScores() {
@@ -169,16 +167,13 @@ class Game {
         b.score - a.score
       );
     }).slice(0, 10);
-    // debugger
 
     this.displayHighScores();
   }
 
   displayHighScores() {
     let highScores = $('.high-score-list').empty();
-    // debugger
     this.highScores.forEach( (score) => {
-      // debugger
       let nodeLi = document.createElement("LI");
       nodeLi.append(`${score.name}: ${score.score}`);
       highScores.append(nodeLi);

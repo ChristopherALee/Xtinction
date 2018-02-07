@@ -49,3 +49,57 @@ function isCollision(
     );
 }
 ```
+
+## Score Tracking
+Utilizes Google Firebase to store player scores. The following snippet demonstrates how high scores are rendered in-game when fetching data from Firebase and using jQuery to render the scores on the DOM:
+``` javascript
+// Fetches scores from Firebase
+fetchScores() {
+  let fetchScoreResults = this.database.ref("scores");
+  fetchScoreResults.on('value', (scores) => {
+    scores.forEach( function(score) {
+      this.highScores.push(score.val());
+    }.bind(this));
+  }).bind(this);
+}
+
+// On gameover, once the player presses 'Enter' to submit their name to the scoreboard, this function will push their score to Firebase
+addScore(e) {
+  if (e.keyCode == 13) {
+    let name = $('.high-score-input')[0].value;
+    let score = this.score;
+
+    this.database.ref("scores").push({
+      name: name,
+      score: score
+    });
+
+    this.inputName = false;
+    $(".high-score-input-container").children("input").remove();
+    this.highScores = [];
+    this.fetchScores();
+    this.sortScores();
+  }
+}
+
+// Sorts the top 10 scores
+sortScores() {
+  this.highScores = this.highScores.sort( (a, b) => {
+    return (
+      b.score - a.score
+    );
+  }).slice(0, 10);
+
+  this.displayHighScores();
+}
+
+// Appends the top 10 scores to the HTML element with class name 'high-score-list'.
+displayHighScores() {
+  let highScores = $('.high-score-list').empty();
+  this.highScores.forEach( (score) => {
+    let nodeLi = document.createElement("LI");
+    nodeLi.append(`${score.name}: ${score.score}`);
+    highScores.append(nodeLi);
+  });
+}
+```
